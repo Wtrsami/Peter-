@@ -4556,7 +4556,8 @@ end
 end 
 end
 end
-local function TagAll(msg) 
+
+local function (msg) 
 local text = msg.content_.text_ 
 if ChatType == 'sp' or ChatType == 'gp'  then 
 if Manager(msg) then 
@@ -4586,17 +4587,13 @@ if x == 1 or x == tags or k == 0 then
 local Text = t:gsub('#all,','#all\n') 
 SendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md') 
 end 
-end,nil) 
-end 
-end,nil) 
-end,nil) 
 end 
 end 
 end 
  
 end 
 return { 
-JokerTeam = TagAll 
+ 
 }
 ------------------------------{ End Checking CheckExpire }------------------------
 
