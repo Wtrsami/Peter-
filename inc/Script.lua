@@ -2396,8 +2396,6 @@ echo '*------------------------------\n*👨🏾‍🔧l ❪ الــدخــو�
 echo '*------------------------------\n*🔌l ❪ مـده تـشغيـل الـسـيـرفـر ❫  \n*»» '"$uptime"'*'
 ]]):read('*all')
 end
-
-
 if msg.type == 'channel' and msg.GroupActive then
 if MsgText[1] == "الاوامر" then
 if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
@@ -2605,55 +2603,8 @@ local text = [[
 
 أو
 
-yt + اسم الاغنية]]
-sendMsg(msg.chat_id_,msg.id_,text)
-return false
-end
+yt + اسم الاغنية
 
-if MsgText[1] == "تفعيل" and MsgText[2] == "اطردني"  then
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
-if not redis:get(max..'lave_me'..msg.chat_id_) then 
-return "*•* أهلين  "..msg.TheRankCmd.."\n*•* اطردني مفعله من قبل يالطيب \n" 
-else 
-redis:del(max..'lave_me'..msg.chat_id_) 
-return "*•* أهلين  "..msg.TheRankCmd.."\n*•* تم تفعيل اطردني \n" 
-end 
-end
-if MsgText[1] == "تعطيل" and MsgText[2] == "اطردني" then
-if not msg.Admin then return "*•* هذا الامر لــ {الادمن,المدير,المالك,LEADER} بس " end
-if redis:get(max..'lave_me'..msg.chat_id_) then 
-return "*•* أهلين  "..msg.TheRankCmd.."\n*•* اطردني معطله من قبل يالطيب \n " 
-else
-redis:set(max..'lave_me'..msg.chat_id_,true)  
-return "*•* أهلين  "..msg.TheRankCmd.."\n*•* تم تعطيل اطردني \n" 
-end   
-end
-
-if MsgText[1] == "اطردني" or MsgText[1] == "احظرني" then
-if not redis:get(max..'lave_me'..msg.chat_id_) then
-if msg.Admin then return "*•* للاسف مااقدر اطرد المدراء والادمنيه والمالكين   " end
-kick_user(msg.sender_user_id_,msg.chat_id_,function(arg,data)
-if data.ID == "Ok" then
-StatusLeft(msg.chat_id_,msg.sender_user_id_)
-send_msg(msg.sender_user_id_,"• هلا بالنفسية , طردتك من المجموعه عشانك طلبت \n• اذا كان ماقصدت او اذا تبي ترجع للمجموعة \n\n• فهذا هو الرابط  \n- "..Flter_Markdown(redis:get(max..'group:name'..msg.chat_id_)).." :\n\n["..redis:get(max..'linkGroup'..msg.chat_id_).."]\n")
-sendMsg(msg.chat_id_,msg.id_,"• طردتك يانفسية , ارسلت لك الرابط خاص تقدر ترجع متى مابغيت يامعقد ")
-else
-sendMsg(msg.chat_id_,msg.id_,"• ما اقدر اطردك لانك مشرف في المجموعه  ")
-end
-end)
-return false
-end
-end
-
-end 
-
-if MsgText[1] == "سورس" or MsgText[1]=="السورس" then
-return [[
-
-🇸🇦⃤[•𝑊𝑇𝑅•](https://t.me/Qx33333)
-
-➥ [𝙇𝙀𝘼𝘿𝙀𝙍](https://t.me/Qx7777)
-➥ [𝙎𝙊𝙐𝙍𝘾𝙀](https://t.me/botwtr)
 
 
 ]]
