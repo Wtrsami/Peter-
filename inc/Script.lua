@@ -2605,8 +2605,7 @@ local text = [[
 
 أو
 
-yt + اسم الاغنية
-「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+yt + اسم الاغنية]]
 sendMsg(msg.chat_id_,msg.id_,text)
 return false
 end
