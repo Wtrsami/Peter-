@@ -2445,7 +2445,7 @@ local Text = [[
 ـــــــــــــــــــــــــــــــــــــــــــــــ
 •[المطور](t.me/YY6VY) ↢ مطور البوت
 
-「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/YY6VY)」  ]]
+「[7𝑹𝑩 🇸🇦 ](https://t.me/YY6VY)」  ]]
 
 keyboard = {} 
 keyboard.inline_keyboard = {
