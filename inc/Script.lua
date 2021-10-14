@@ -327,7 +327,7 @@ return settingsall(msg)
 end
 
 if MsgText[1] == "المالك" then
-local creator = redis:get(max..':mon:'..msg.chat_id_) or 1088394097
+local creator = redis:get(max..':mon:'..msg.chat_id_) or 12566691410
 GetUserID(creator,function (arg,data)
 sendMsg(msg.chat_id_,msg.id_,"["..data.first_name_.."](t.me/"..data.username_..")")
 end)
@@ -588,7 +588,7 @@ end
 
 
 if (MsgText[1] == "رفع مالك اساسي" or MsgText[1] == "رفع منشئ اساسي") then
-if not msg.SudoUser then return "*•* هذا الامر يخص {AID🎖,LEADER} بس  " end
+if not msg.SudoUser then return "*•* هذا الامر يخص {Dev,LEADER} بس  " end
 if not MsgText[2] and msg.reply_id then 
 GetMsgInfo(msg.chat_id_,msg.reply_id,action_by_reply,{msg=msg,cmd="setkara"}) 
 return false
@@ -604,7 +604,7 @@ end
 end
 
 if (MsgText[1] == "تنزيل مالك اساسي" or MsgText[1] == "تنزيل منشئ اساسي") then
-if not msg.SudoUser then return "*•* هذا الامر يخص {AID🎖,LEADER} بس  " end
+if not msg.SudoUser then return "*•* هذا الامر يخص {Dev,LEADER} بس  " end
 if not MsgText[2] and msg.reply_id then 
 GetMsgInfo(msg.chat_id_,msg.reply_id,action_by_reply,{msg=msg,cmd="remkara"}) 
 return false
@@ -621,7 +621,7 @@ end
 
 
 if (MsgText[1] == "رفع مالك" or MsgText[1] == "رفع منشئ") then
-if not msg.Kara then return "*•* هذا الامر يخص {المالك الاساسي,AID🎖,LEADER} بس  " end
+if not msg.Kara then return "*•* هذا الامر يخص {المالك الاساسي,Dev,LEADER} بس  " end
 if not MsgText[2] and msg.reply_id then
 GetMsgInfo(msg.chat_id_,msg.reply_id,action_by_reply,{msg=msg,cmd="setmnsha"})
 end
@@ -1299,14 +1299,47 @@ end
 
 
 
-
 if MsgText[1] == "مسح الصوره" then
-if not msg.Creator then return "*•* هذا الامر يخص {المالك,LEADER} بس  " end
+if not msg.Creator then return "• **هذا الامر يخص {LEADER,المنشئ} فقط  \n" end
 https.request(ApiToken.."/deleteChatPhoto?chat_id="..msg.chat_id_)
-return sendMsg(msg.chat_id_,msg.id_,'• تم مسح الصوره للمجموعة ..')
+return sendMsg(msg.chat_id_,msg.id_,'• تم مسح الصوره المجموعه .\n')
 end
 
 
+if MsgText[1] == "ضع صوره" then
+if not msg.Creator then return "• **هذا الامر يخص {LEADER,المنشئ} فقط  \n" end
+if msg.reply_id then
+GetMsgInfo(msg.chat_id_,msg.reply_id,function(arg, data)
+if data.content_.ID == 'MessagePhoto' then
+if data.content_.photo_.sizes_[3] then 
+photo_id = data.content_.photo_.sizes_[3].photo_.persistent_id_
+else 
+photo_id = data.content_.photo_.sizes_[0].photo_.persistent_id_
+end
+tdcli_function({ID="ChangeChatPhoto",chat_id_ = msg.chat_id_,photo_ = GetInputFile(photo_id)},
+function(arg,data)
+if data.ID == "Ok" then
+--return sendMsg(msg.chat_id_,msg.id_,'• تم تغيير صوره المجموعه\n')
+elseif  data.code_ == 3 then
+return sendMsg(msg.chat_id_,msg.id_,'• ليس لدي صلاحيه تغيير الصوره \n• يجب اعطائي صلاحيه `تغيير معلومات المجموعه ` ⠀\n')
+end
+end, nil)
+end
+
+end ,nil)
+return false
+else 
+redis:setex(max..'photo:group'..msg.chat_id_..msg.sender_user_id_,300,true)
+return '• حسناً .\n• الان قم بارسال الصوره\n' 
+end 
+end
+
+
+if MsgText[1] == "ضع وصف" then 
+if not msg.Creator then return "• **هذا الامر يخص {LEADER,المنشئ} فقط  \n" end
+redis:setex(max..'about:witting'..msg.sender_user_id_,300,true) 
+return "• حسناً .\n• الان ارسل الوصف  للمجموعه\n" 
+end
 
 
 
@@ -1580,6 +1613,7 @@ return sendMsg(msg.chat_id_,msg.id_,Get_info)
 end,nil)
 return false
 end
+
 
 if MsgText[1] == 'مسح' and MsgText[2] == 'نقاطي'  then
 local points = redis:get(max..':User_Points:'..msg.chat_id_..msg.sender_user_id_) or 0
@@ -2396,11 +2430,13 @@ echo '*------------------------------\n*👨🏾‍🔧l ❪ الــدخــو�
 echo '*------------------------------\n*🔌l ❪ مـده تـشغيـل الـسـيـرفـر ❫  \n*»» '"$uptime"'*'
 ]]):read('*all')
 end
+
+
 if msg.type == 'channel' and msg.GroupActive then
 if MsgText[1] == "الاوامر" then
 if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
 local Text = [[
-‌‌‏‌‌‏‌‌‌‌‏ ❨ ‌‌‏الاوامر العامة‌‏ ❩
+‏‎‏‌‌‏‌‌‌‌‏ ❨ ‌‌‏الاوامر العامة‌‏ ❩
 
 • م1 ↢ اوامر الحماية‌‏
 • م2 ↢ اوامر الاشراف 
@@ -2607,6 +2643,73 @@ yt + اسم الاغنية
 
 
 
+「[𝙎𝙊𝙐𝙍𝘾𝙀 ](https://t.me/QxWTR)」 ]]
+sendMsg(msg.chat_id_,msg.id_,text)
+return false
+end
+
+if MsgText[1]== 'الساوند' or MsgText[1]== 'ساوند' then
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس  " end
+local text = [[
+✶ الساوند كلاود
+• امر التشغيل ❨ تفعيل الساوند ❩
+• امر التعطيل ❨ تعطيل الساوند ❩
+
+✶ البـحث عن اغنية ↓
+
+sn + رابط الاغنية
+
+「[𝙎𝙊𝙐𝙍𝘾𝙀 ](https://t.me/QxWTR)」 ]]
+sendMsg(msg.chat_id_,msg.id_,text)
+return false
+end
+
+if MsgText[1] == "تفعيل" and MsgText[2] == "اطردني"  then
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
+if not redis:get(max..'lave_me'..msg.chat_id_) then 
+return "*•* أهلين  "..msg.TheRankCmd.."\n*•* اطردني مفعله من قبل يالطيب \n" 
+else 
+redis:del(max..'lave_me'..msg.chat_id_) 
+return "*•* أهلين  "..msg.TheRankCmd.."\n*•* تم تفعيل اطردني \n" 
+end 
+end
+if MsgText[1] == "تعطيل" and MsgText[2] == "اطردني" then
+if not msg.Admin then return "*•* هذا الامر لــ {الادمن,المدير,المالك,LEADER} بس " end
+if redis:get(max..'lave_me'..msg.chat_id_) then 
+return "*•* أهلين  "..msg.TheRankCmd.."\n*•* اطردني معطله من قبل يالطيب \n " 
+else
+redis:set(max..'lave_me'..msg.chat_id_,true)  
+return "*•* أهلين  "..msg.TheRankCmd.."\n*•* تم تعطيل اطردني \n" 
+end   
+end
+
+if MsgText[1] == "اطردني" or MsgText[1] == "احظرني" then
+if not redis:get(max..'lave_me'..msg.chat_id_) then
+if msg.Admin then return "*•* للاسف مااقدر اطرد المدراء والادمنيه والمالكين   " end
+kick_user(msg.sender_user_id_,msg.chat_id_,function(arg,data)
+if data.ID == "Ok" then
+StatusLeft(msg.chat_id_,msg.sender_user_id_)
+send_msg(msg.sender_user_id_,"• هلا بالنفسية , طردتك من المجموعه عشانك طلبت \n• اذا كان ماقصدت او اذا تبي ترجع للمجموعة \n\n• فهذا هو الرابط  \n- "..Flter_Markdown(redis:get(max..'group:name'..msg.chat_id_)).." :\n\n["..redis:get(max..'linkGroup'..msg.chat_id_).."]\n")
+sendMsg(msg.chat_id_,msg.id_,"• طردتك يانفسية , ارسلت لك الرابط خاص تقدر ترجع متى مابغيت يامعقد ")
+else
+sendMsg(msg.chat_id_,msg.id_,"• ما اقدر اطردك لانك مشرف في المجموعه  ")
+end
+end)
+return false
+end
+end
+
+end 
+
+if MsgText[1] == "سورس" or MsgText[1]=="السورس" then
+return [[
+
+🇸🇦⃤[•𝑊𝑇𝑅•](https://t.me/Qx33333)
+
+➥ [𝙇𝙀𝘼𝘿𝙀𝙍](https://t.me/Qx7777)
+➥ [𝙎𝙊𝙐𝙍𝘾𝙀](https://t.me/QxWTR)
+
+
 ]]
 end
 
@@ -2720,6 +2823,140 @@ end
 
 ------set cmd------
 Black = msg.text 
+if Black == 'رفع مشرف بكامل الصلاحيات' and msg.reply_to_message_id_ ~= 0 then
+
+if not msg.Kara then return "• **هذا الامر يخص {المنشئ الاساسي,LEADER} فقط ." end
+
+function setadmins(black,diamond)
+
+if msg.can_promote_members == false then
+
+sendMsg(msg.chat_id_,msg.id_,'• البوت لايمتلك  صلاحية رفع مشرف')
+
+else
+
+res = https.request(ApiToken.."/promoteChatMember?chat_id="..msg.chat_id_.. "&user_id=" ..diamond.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
+
+function name(arg,data)
+
+sendMsg(msg.chat_id_,msg.id_,'• الأسم : '..data.first_name_..'\n• تم رفعته مشرف بكامل الصلاحيات\n‏‏')
+
+end
+
+GetUserID(diamond.sender_user_id_,name)
+
+end
+
+end
+
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)},setadmins,nil)
+
+return false
+
+end
+
+
+
+
+if Black == 'رفع مشرف' and msg.reply_to_message_id_ ~= 0 then
+
+if not msg.Kara then return "• **هذا الامر يخص {المنشئ الاساسي,LEADER} فقط ." end
+
+function setadmins(black,diamond)
+
+if msg.can_promote_members == false then
+
+sendMsg(msg.chat_id_,msg.id_,'• البوت لايمتلك  صلاحية رفع مشرف')
+
+else
+
+res = https.request(ApiToken.."/promoteChatMember?chat_id="..msg.chat_id_.. "&user_id=" ..diamond.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
+
+function name(arg,data)
+
+sendMsg(msg.chat_id_,msg.id_,'الأسم : '..data.first_name_..'\n• تم رفعه مشرف \n‏')
+
+end
+
+GetUserID(diamond.sender_user_id_,name)
+
+end
+
+end
+
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)},setadmins,nil)
+
+return false
+
+end
+
+
+
+
+if Black == 'تنزيل مشرف' and msg.reply_to_message_id_ ~= 0 then
+
+if not msg.Kara then return "• **هذا الامر يخص {المنشئ الاساسي,LEADER} فقط ." end
+
+function remadmins(black,diamond)
+
+if msg.can_promote_members == false then
+
+sendMsg(msg.chat_id_,msg.id_,'• البوت لايمتلك  صلاحية رفع مشرف')
+
+else
+
+res = https.request(ApiToken.."/promoteChatMember?chat_id="..msg.chat_id_.. "&user_id=" ..diamond.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
+
+function name(arg,data)
+
+sendMsg(msg.chat_id_,msg.id_,'• الأسم : '..data.first_name_..'\nط• تم تنزله من الاشراف\n‏')
+
+end
+
+GetUserID(diamond.sender_user_id_,name)
+
+end
+
+end
+
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)},remadmins,nil)
+
+return false
+end
+
+if Black and (Black:match('^tr (.*)') or Black:match('^ترجم (.*)')) then 
+bd = Black:match('^tr (.*)') or Black:match('^ترجم (.*)') 
+url , res = https.request('https://api.codebazan.ir/lang/json/?matn='..bd..'') 
+if res ~= 200 then 
+end 
+local jdat = json:decode(url)  
+fa = jdat.result.fa or '---' 
+en = jdat.result.en or '---' 
+fr = jdat.result.fr or '---' 
+ru = jdat.result.ru or '---' 
+ar = jdat.result.ar or '---' 
+zh = jdat.result.zh or '---' 
+ja = jdat.result.ja or '---' 
+de = jdat.result.de or '---' 
+es = jdat.result.es or '---' 
+tr = [[ 
+ 
+ترجمة |]]..bd..[[| . 
+-----------
+🇮🇷 : Persian : ]]..fa..[[ 
+🏴󠁧󠁢󠁥󠁮󠁧󠁿 : English : ]]..en..[[ 
+🇫🇷 : Farance : ]]..fr..[[ 
+🇷🇺 : Russia : ]]..ru..[[ 
+🇸🇦 : Arabi : ]]..ar..[[  
+🇨🇳 : China : ]]..zh..[[  
+🇯🇵 : Japon : ]]..ja..[[  
+🇩🇪 : Almani : ]]..de..[[  
+🇪🇸 : Spani : ]]..es..[[ 
+ 
+
+]] 
+sendMsg(msg.chat_id_,msg.id_,tr) 
+end
 mmd = redis:get(max..'addcmd'..msg.chat_id_..msg.sender_user_id_)
 if mmd then
 redis:sadd(max..'CmDlist:'..msg.chat_id_,msg.text)
@@ -2727,6 +2964,7 @@ redis:hset(max..'CmD:'..msg.chat_id_,msg.text,mmd)
 sendMsg(msg.chat_id_,msg.id_,'• اهلين عيني \n• تم تثبيت الامر الجديد \n𓄹𓄼')
 redis:del(max..'addcmd'..msg.chat_id_..msg.sender_user_id_)
 end
+
 
 if Black:match('^تغيير امر (.*)') then
 if not msg.Kara then return "*•* هذا الامر يخص {المالك,المطور,LEADER} بس  " end
@@ -3440,7 +3678,7 @@ end
  
 
 if msg.text and msg.type == "channel" then
-if msg.text:match("^"..Bot_Name.."اطلع ") and (msg.SudoBase or msg.SudoBase or msg.Director) then
+if msg.text:match("^"..Bot_Name.." اطلع$") and (msg.SudoBase or msg.SudoBase or msg.Director) then
 sendMsg(msg.chat_id_,msg.id_,'• ابشر')
 rem_data_group(msg.chat_id_)
 StatusLeft(msg.chat_id_,our_id)
@@ -4492,44 +4730,6 @@ end
 end
 end
 
-local function (msg) 
-local text = msg.content_.text_ 
-if ChatType == 'sp' or ChatType == 'gp'  then 
-if Manager(msg) then 
-if text == "all" or text == "@all" then 
-if DevAbs:get(JokerTeam.."Abs:TagAll:Time"..msg.chat_id_..':'..msg.sender_user_id_) then   
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙انتظر دقيقه بعد ارسال الامر', 1, 'md') 
-return false   
-end 
-DevAbs:setex(JokerTeam..'Abs:TagAll:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true) 
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(arg,data)  
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = data.member_count_},function(arg,dp) 
-x = 0 
-tags = 0 
-local list = dp.members_ 
-for k, v in pairs(list) do 
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(extra,result,success) 
-if x == 5 or x == tags or k == 0 then 
-tags = x + 5 
-t = "#all" 
-end 
-x = x + 1 
-TagName = result.first_name_ 
-TagName = TagName:gsub("]","") 
-TagName = TagName:gsub("[[]","") 
-t = t..", ["..TagName.."](tg://user?id="..v.user_id_..")" 
-if x == 1 or x == tags or k == 0 then 
-local Text = t:gsub('#all,','#all\n') 
-SendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md') 
-end 
-end 
-end 
-end 
- 
-end 
-return { 
- 
-}
 ------------------------------{ End Checking CheckExpire }------------------------
 
 
@@ -4703,9 +4903,8 @@ max = {
 "^(المنشئ الاساسي)$",
 "^(المالك)$",
 "^(المحظورين)$",
-"^(وضع اسم)$",
 "^(وضع صوره)$",
-"^(وضع وصف)$",
+  "^(ضع صوره)$",
 "^(طرد البوتات)$",
 "^(كشف البوتات)$",
 "^(طرد المحذوفين)$",
