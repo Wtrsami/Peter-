@@ -2443,9 +2443,9 @@ local Text = [[
 • م3 ↢ اوامر التفعيل والتعطيل
 • م4 ↢ اوامر الخدمة 
 ـــــــــــــــــــــــــــــــــــــــــــــــ
-•[المطور](t.me/Qx7777) ↢ مطور البوت
+•[المطور](t.me/YY6VY) ↢ مطور البوت
 
-「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」  ]]
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/YY6VY)」  ]]
 
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -2704,9 +2704,9 @@ end
 if MsgText[1] == "سورس" or MsgText[1]=="السورس" then
 return [[
 
-🇸🇦⃤[•𝑊𝑇𝑅•](https://t.me/Qx33333)
+🇸🇦⃤[•𝑊𝑇𝑅•](https://t.me/YY6VY_BOT)
 
-➥ [𝙇𝙀𝘼𝘿𝙀𝙍](https://t.me/Qx7777)
+➥ [𝙇𝙀𝘼𝘿𝙀𝙍](https://t.me/YY6VY)
 ➥ [𝙎𝙊𝙐𝙍𝘾𝙀](https://t.me/QxWTR)
 
 
