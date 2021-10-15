@@ -479,7 +479,7 @@ var = 'البوت'
 elseif  UserID == SUDO_ID then
 var = 'LEADER' 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then
-var = 'Co-LEADER' 
+var = 'Dev' 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then
 var = ' المالك الاساسي' 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
@@ -908,7 +908,7 @@ file:write([[
 <head>
 <title>قائمه المجموعات 🗣</title>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-<meta name="viewport" content="width=Co-LEADERice-width, initial-scale=1">
+<meta name="viewport" content="width=Device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Harmattan" rel="stylesheet">
 
 </head>
@@ -1436,7 +1436,7 @@ Getrtb = 'ادمن'
 elseif  UserID == SUDO_ID then
 Getrtb = 'LEADER' 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then
-Getrtb = 'Co-LEADER ' 
+Getrtb = 'Dev' 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then
 Getrtb = 'المالك الاساسي' 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
@@ -1598,6 +1598,22 @@ end
 redis:hset(max..'username:'..UserID, 'username', UserName)
 redis:sadd(max..'owners:'..ChatID,UserID)
 return sendMsg(ChatID,MsgID,'*• * العضو » ❪ '..UserName..' ❫\n*• * الايدي » ❪ `'..UserID..'` ❫\n*• * تم الرفع صار مدير ')
+end
+
+if cmd == "setkara" then
+if UserID == our_id then 
+return sendMsg(ChatID,MsgID,"*• * معليش مايمديني ارفع نفسي") 
+elseif data.type_.ID  == "UserTypeBot" then 
+return sendMsg(ChatID,MsgID,"*• * معليش مايمديني ارفع بوت") 
+elseif data.type_.ID == "ChannelChatInfo" then 
+return sendMsg(ChatID,MsgID,"*• * معليش مايمديني ارفع قناة في البوت") 
+end
+if redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
+return sendMsg(ChatID,MsgID,'•  العضو ❪ '..UserName..' ❫\n•  الايدي ❪ '..UserID..' ❫\n•  مالك اساسي️ من قبل') 
+end
+redis:hset(max..'username:'..UserID,'username',UserName)
+redis:sadd(max..':KARA_BOT:'..ChatID,UserID)
+return sendMsg(ChatID,MsgID,'•  العضو ❪ '..UserName..' ❫\n•  الايدي ❪ '..UserID..' ❫\n•  تم الرفع صار مالك اساسي') 
 end
 
 if cmd == "promote" then

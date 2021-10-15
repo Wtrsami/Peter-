@@ -253,8 +253,8 @@ msg.TheRankCmd = 'LEADER'
 msg.TheRank = 'LEADER' 
 msg.Rank = 1
 elseif redis:sismember(max..':SUDO_BOT:',msg.sender_user_id_) then 
-msg.TheRankCmd = 'Co-LEADER'
-msg.TheRank = 'Co-LEADER'
+msg.TheRankCmd = 'Dev'
+msg.TheRank = 'Dev'
 msg.Rank = 2
 elseif msg.GroupActive and redis:sismember(max..':KARA_BOT:'..msg.chat_id_,msg.sender_user_id_) then 
 msg.TheRankCmd = 'المالك الاساسي'
@@ -483,19 +483,263 @@ function tdcli_update_callback(data)
 	UpdateSourceStart = false
 	EditMsg(data.message_.chat_id_,data.message_.id_,'10% - |█          |')
 	EditMsg(data.message_.chat_id_,data.message_.id_,'20% - |███         |')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/Run.lua','./inc/Run.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Run.lua','./inc/Run.lua')
 	EditMsg(data.message_.chat_id_,data.message_.id_,'40% - |█████       |')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/locks.lua','./inc/locks.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/locks.lua','./inc/locks.lua')
 	EditMsg(data.message_.chat_id_,data.message_.id_,'60% - |███████     |')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/Script.lua','./inc/Script.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Script.lua','./inc/Script.lua')
 	EditMsg(data.message_.chat_id_,data.message_.id_,'80% - |█████████   |')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/functions.lua','./inc/functions.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/plugins/zhrfa.lua','./plugins/zhrfa.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/plugins/games.lua','./plugins/games.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/functions.lua','./inc/functions.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/plugins/zhrfa.lua','./plugins/zhrfa.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/plugins/games.lua','./plugins/games.lua')
 	EditMsg(data.message_.chat_id_,data.message_.id_,'100% - |█████████████|\n\n🔝*¦* السورس الى اصدار \n📟*¦* تم اعاده تشغيل السورس بنجاح')
 	dofile("./inc/Run.lua")
 	print("Update Source And Reload ~ ./inc/Run.lua")
 	end
+elseif data.ID == "UpdateNewCallbackQuery" then
+local Chat_Id2 = data.chat_id_
+local MsgId2 = data.message_id_
+local DataText = data.payload_.data_
+local Msg_Id2 = data.message_id_/2097152/0.5
+if DataText and DataText:match("^/help:(.*)$") then  
+local user_id = DataText:match("^/help:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+‏‎‏‌‌‏‌‌‌‌‏ ❨ ‌‌‏الاوامر العامة‌‏ ❩
+
+• م1 ↢ اوامر الحماية‌‏
+• م2 ↢ اوامر الاشراف 
+• م3 ↢ اوامر التفعيل والتعطيل
+• م4 ↢ اوامر الخدمة 
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+•[المطور](t.me/Qx7777) ↢ مطور البوت
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」  ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
+{{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},
+{{text="الاغاني",callback_data="/music:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/m1:(.*)$") then  
+local user_id = DataText:match("^/m1:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+❨ اوامر الحماية ❩
+
+• قفل ↣ ↢ فتح  ❨ الكـــل ❩
+• قفل ↣ ↢ فتح  ❨ التـاق ❩
+• قفل ↣ ↢ فتح  ❨ الفيـديـــو ❩
+• قفل ↣ ↢ فتح  ❨ الصــــــــور ❩
+• قفل ↣ ↢ فتح  ❨ الملصقات ❩
+• قفل ↣ ↢ فتح  ❨ المتحركه ❩
+• قفل ↣ ↢ فتح  ❨ البصمــات ❩
+• قفل ↣ ↢ فتح  ❨ الدردشـــه ❩
+• قفل ↣ ↢ فتح  ❨ الــروابـــط ❩
+• قفل ↣ ↢ فتح  ❨ البـــوتــات ❩
+• قفل ↣ ↢ فتح  ❨ التعــديــل ❩
+• قفل ↣ ↢ فتح  ❨ المعرفــات ❩
+• قفل ↣ ↢ فتح  ❨ الكـــلايـش ❩
+• قفل ↣ ↢ فتح  ❨ التـــكـــــرار ❩
+• قفل ↣ ↢ فتح  ❨ الجــهـــــات ❩
+• قفل ↣ ↢ فتح  ❨ الانـــلايــن ❩
+• قفل ↣ ↢ فتح  ❨ التوجيــــه ❩
+• قفل ↣ ↢ فتح  ❨ الدخول بالرابط ❩
+• قفل ↣ ↢ فتح  ❨ البوتات بالطرد ❩
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+
+❨ القفل بالتقييـد ❩
+
+• قفل ↣ ↢ فتح ❨ الــصـور بالتقييـد ❩
+• قفل ↣ ↢ فتح ❨ الــروابــط بالتقييـد ❩
+• قفل ↣ ↢ فتح ❨ المتحركه بالتقييـد ❩
+• قفل ↣ ↢ فتح ❨ الفيـديـو بالتقييد ❩
+• قفل ↣ ↢ فتح ❨ التوجيـه بالتقييــد ❩
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」  ]] 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م2",callback_data="/m2:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/m2:(.*)$") then  
+local user_id = DataText:match("^/m2:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+❨ اوامر الرفع والتنزيل ❩
+
+• رفع ↣ ↢ تنزيل ❨ مالك ❩
+• رفع ↣ ↢ تنزيل ❨ مشرف ❩
+• رفع ↣ ↢ تنزيل ❨ مدير ❩
+• رفع ↣ ↢ تنزيل ❨ ادمن ❩
+• رفع ↣ ↢ تنزيل ❨ مميز ❩
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+
+❨ اوامر الحظر والطرد والتقييد ❩
+
+• حظر  ❨  بالرد أو بالمعرف ❩
+• الغاء الحظر  ❨  بالرد أو بالمعرف ❩ 
+• طرد   ❨ بالرد أو بالمعرف ❩
+• كتم  ❨ بالرد أو بالمعرف ❩
+• الغاء الكتم  ❨ بالرد أو بالمعرف ❩
+• تقييد  ❨ بالرد أو بالمعرف ❩
+• الغاء التقييد  ❨ بالرد أو بالمعرف ❩
+• منع + الكلمة 
+• الغاء منع + الكلمة
+
+
+
+❨ اوامر المسح للمالك ❩
+
+• مسح الادمنيـه «» لمسح ❨ الادمنيه ❩
+• مسح المميزين «» لمسح ❨ المميزين ❩
+• مسح المدراء «» لمسح ❨ المدراء ❩
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+
+❨ اوامر الوضع ❩
+
+• وضع رابط
+• وضع قوانين
+• وضع ترحيب
+• وضع تكرار + العدد
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/m3:(.*)$") then  
+local user_id = DataText:match("^/m3:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+❨ اوامر التفعيل والتعطيل ❩
+
+• تفعيل ↣ ↢ تعطيل  ❨ الرفــع ❩
+• تفعيل ↣ ↢ تعطيل  ❨ الردود ❩
+• تفعيل ↣ ↢ تعطيل  ❨ الالعـاب ❩
+• تفعيل ↣ ↢ تعطيل  ❨ التحذير ❩
+• تفعيل ↣ ↢ تعطيل  ❨ الترحيب ❩
+• تفعيل ↣ ↢ تعطيل  ❨ الايدي ❩
+• تفعيل ↣ ↢ تعطيل  ❨ الايدي بالصوره ❩
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+
+❨ اوامر رؤية الاعدادات ❩
+
+• الـرابـط ↢ لعرض ❨ الرابط ❩
+• انشاء رابط ↢ لستخراج ❨ الرابط ❩
+• الادمنيه ↢ لعرض ❨ الادمنيه ❩
+• القوانين ↢ لعرض ❨ القوانين ❩
+• الوسائط ↢ لعرض اعدادات ❨ الميديا ❩
+• الحمايه ↢ لعرض كل ❨ الاعدادات ❩
+• المــدراء ↢ لعرض ❨ الاداريين ❩
+• المكتومين ↢ لعـرض ❨ المكتومين ❩
+• المحظورين ↢ لعرض ❨ المحظورين ❩
+• الاعدادات ↢ لعرض اعدادات ❨ المجموعه ❩
+• المجموعه ↢ لعرض معلومات ❨ المجموعه ❩
+• تغير امر + الامر ↢ لتغير  ❨ اوامر البوت ❩
+• مسح امر + الامر ↢ لمسح  ❨ الامر المضاف ❩
+• قائمة الاوامر ↢ لمعرفة  ❨ الاوامر المضافة ❩
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/m4:(.*)$") then  
+local user_id = DataText:match("^/m4:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+❨ اوامر الخدمة ❩
+
+• ايـــدي ↢ لعرض صورتك و معلوماتك
+• ايديـي ↢ لعرض ايديك 
+• ايدي بالرد ↢ لعرض ايدي الشخص
+• الرابط ↢ استخراج رابط المجموعه
+• جهاتي ↢ لمعرفه عدد جهاتك
+• الالعاب ↢ لعرض الالعاب
+• نقاطي ↢ لمعرفة مجوهراتك
+• بيع نقاطي + العدد 
+• معلوماتي ↢ لعرض معلوماتك
+• الرتبه بالرد ↢ لمعرفه رتبه الشخص
+• التفاعل بالمعرف ↢ لمعرفة تفاعل الشخص
+• التفاعل بالــرد ↢ لمعرفة تفاعل الشخص
+• كشف بالمعرف ↢ لمعرفه معلومات حسابه
+• كشف بالرد ↢ لمعرفه معلومات حسابه
+• طرد البوتات ↢ لطرد كل البوتات
+• طرد المحذوفين ↢ لطرد الحسابات المحذوفه
+• رابط الحذف ↢ لحذف حساب التليجرام
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
+{{text="م3",callback_data="/m3:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/music:(.*)$") then  
+local user_id = DataText:match("^/music:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذرا هذا الامر ليس لك .")..'&show_alert=true')
+return false
+end
+local Text = [[
+✶ اليـوتيوب
+• امر التشغيل ❨ تفعيل اليوتيوب ❩
+• امر التعطيل ❨ تعطيل اليوتيوب ❩
+
+✶ البـحث عن اغنية ↓
+• بحث + اسم الاغنية
+
+أو
+yt + اسم الاغنية
+ـــــــــــــــــــــــــــــــــــــــــــــــ
+✶ الساوند كلاود
+• امر التشغيل ❨ تفعيل الساوند ❩
+• امر التعطيل ❨ تعطيل الساوند ❩
+
+✶ البـحث عن اغنية ↓
+
+sn + رابط الاغنية
+
+「[𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
+{{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
 	elseif data.ID == "UpdateNewMessage" then
 
 	if msg.content_.ID == "MessageText" and not msg.forward_info_ then
@@ -527,12 +771,12 @@ end
 	end)
 	end 
 	if msg.text== 'Update Source' and msg.sender_user_id_ == SUDO_ID then
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/Run.lua','./inc/Run.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/Script.lua','./inc/Script.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/functions.lua','./inc/functions.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/inc/locks.lua','./inc/locks.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/plugins/zhrfa.lua','./plugins/zhrfa.lua')
-	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/LEADER/plugins/games.lua','./plugins/games.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Run.lua','./inc/Run.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Script.lua','./inc/Script.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/functions.lua','./inc/functions.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/locks.lua','./inc/locks.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/plugins/zhrfa.lua','./plugins/zhrfa.lua')
+	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/plugins/games.lua','./plugins/games.lua')
 	sendMsg(msg.chat_id_,msg.id_,'👷🏽| {* تــم تحديث وتثبيت السورس  *} 📡.\n\n👨🏼‍💼| { Bot is Update » }👍🏿',nil,function(arg,data)
 	dofile("./inc/Run.lua")
 	print("Reload ~ ./inc/Run.lua")
