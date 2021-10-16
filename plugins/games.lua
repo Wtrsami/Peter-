@@ -947,7 +947,7 @@ _______________________
 ↫ نقاطي⌁ عشان تشوف نقاطك
 ↫ بيع نقاطي+ العدد ⌁ للأستبدال 
 
-「[ 𝒎𝒆𝒔𝒉𝒂𝒍 ](https://t.me/Qx7777)」 ]]
+「[ ѕᴏᴜʀᴄᴇѕ ᴘᴇᴛᴇʀ ](https://t.me/VV6YV)」 ]]
 end
 if MsgText[1] == 'روليت' then
 redis:del(max..":Number_Add:"..msg.chat_id_..msg.sender_user_id_) 
@@ -1185,23 +1185,11 @@ end
 
 
 
-if msg.text then  
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_}, function(arg,data) 
-if redis:get(max.."chencher"..msg.sender_user_id_) then 
-if redis:get(max.."chencher"..msg.sender_user_id_) ~= data.first_name_ then 
-tahan = '['..(redis:get(max.."chencher"..msg.sender_user_id_) or '')..']'
-taham = '['..data.first_name_..']'
-local taha ={ 
-'\n حركات اسم جديد يا '..taham.. ' \n  بس ماش ماعجبني اسمك الاول احسن '..tahan..'',
-'\n مو كان اسمك '..tahan..' ليه غيرته ؟',
-}
-sendMsg(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-end  
+
+
 end
-redis:set(max.."chencher"..msg.sender_user_id_, data.first_name_) 
-end,nil) 
-end
-end
+
+
 return {
 max = {
 "^(حزوره)$", 
