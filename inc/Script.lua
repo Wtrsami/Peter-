@@ -2443,7 +2443,6 @@ local Text = [[
 • م3 ↢ اوامر التفعيل والتعطيل
 • م4 ↢ اوامر الخدمة 
 ـــــــــــــــــــــــــــــــــــــــــــــــ
-•[المطور](t.me/YY6VY)مطور البوت
 
 「[ѕᴏᴜʀᴄᴇѕ ᴘᴇᴛᴇʀ ](https://t.me/VV6YV)」  ]]
 
@@ -2451,7 +2450,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..msg.sender_user_id_},{text="م2",callback_data="/m2:"..msg.sender_user_id_}},
 {{text="م3",callback_data="/m3:"..msg.sender_user_id_},{text="م4",callback_data="/m4:"..msg.sender_user_id_}},
-{{text="الاغاني",callback_data="/music:"..msg.sender_user_id_}},
+{{text="اوامر التحميل",callback_data="/music:"..msg.sender_user_id_}},
 } 
 Msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
