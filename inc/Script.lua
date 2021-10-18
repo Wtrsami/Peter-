@@ -1490,7 +1490,7 @@ if redis:get(max.."getidstatus"..msg.chat_id_) == "Photo" then
 		}
 		ssssys = ali[math.random(#ali)]
 		if not redis:get(max.."KLISH:ID"..msg.chat_id_) then
-		sendPhoto(msg.chat_id_,msg.id_,data.photos_[0].sizes_[1].photo_.persistent_id_,' ↧'..ssssys..' \n 𖡋 : 𝐼𝐷 ➪ {'..msg.sender_user_id_..'}\n 𖡋 : 𝑈𝑆𝐸𝑅 ➪ {'..UserNameID..'}\n 𖡋 : 𝑆𝑇𝐴𝑇𝑆 ➪ {'..msg.TheRank..'}\n 𖡋 : 𝑀𝑆𝐺𝑆 ➪ {'..msgs..'}\n 𖡋 : 𝐵𝐼𝑂 ➪ '..bio..'',dl_cb,nil)
+		sendPhoto(msg.chat_id_,msg.id_,data.photos_[0].sizes_[1].photo_.persistent_id_,' ↧'..ssssys..' \n 𖡋 : ʏᴏᴜʀ ɪᴅ ➪ {'..msg.sender_user_id_..'}\n 𖡋 : ᴜѕᴇʀɴᴀᴍᴇ ➪ {'..UserNameID..'}\n 𖡋 : ѕᴛᴀᴛѕ ➪ {'..msg.TheRank..'}\n 𖡋 : ᴍѕɢѕ ➪ {'..msgs..'}\n 𖡋 : ʙɪᴏ ➪ '..bio..'',dl_cb,nil)
 		else
 		Text = redis:get(max.."KLISH:ID"..msg.chat_id_)
 		Text = Text:gsub('{الايدي}',msg.sender_user_id_)
@@ -1506,7 +1506,7 @@ if redis:get(max.."getidstatus"..msg.chat_id_) == "Photo" then
 		end
 	else
 		if not redis:get(max.."KLISH:ID"..msg.chat_id_) then
-		sendMsg(msg.chat_id_,msg.id_,' } مايمديني اطلع صورتك لانك يا حاظر البوت او ماحطيت صورة ...!\n 𖡋 : 𝐼𝐷 ➪'..msg.sender_user_id_..' }\n 𖡋 : 𝑈𝑆𝐸𝑅 ➪ {'..UserNameID..'}\n 𖡋 : 𝑆𝑇𝐴𝑇𝑆 ➪ {'..msg.TheRank..'}\n 𖡋 : 𝑀𝑆𝐺𝑆 ➪ {'..msgs..'}\n 𖡋 : 𝐵𝐼𝑂 ➪ '..bio..'',dl_cb,nil)
+		sendMsg(msg.chat_id_,msg.id_,' } مايمديني اطلع صورتك لانك يا حاظر البوت او ماحطيت صورة ...!\n 𖡋 : ʏᴏᴜʀ ɪᴅ ➪'..msg.sender_user_id_..' }\n 𖡋 : ᴜѕᴇʀɴᴀᴍᴇ ➪ {'..UserNameID..'}\n 𖡋 : ѕᴛᴀᴛѕ ➪ {'..msg.TheRank..'}\n 𖡋 : ᴍѕɢѕ ➪ {'..msgs..'}\n 𖡋 : ʙɪᴏ ➪ '..bio..'',dl_cb,nil)
 		else
 		Text = redis:get(max.."KLISH:ID"..msg.chat_id_)
 		Text = Text:gsub('{الايدي}',msg.sender_user_id_)
@@ -1535,7 +1535,7 @@ else
 		Text = Text:gsub('{البايو}',bio)
 		sendMsg(msg.chat_id_,msg.id_,Flter_Markdown(Text))
 		else
-		sendMsg(msg.chat_id_,msg.id_,'الايدي بالصوره معطل \n 𖡋 : 𝐼𝐷 ➪ '..msg.sender_user_id_..' \n 𖡋 : 𝑈𝑆𝐸𝑅 ➪ {'..UserNameID..'}\n 𖡋 : 𝑆𝑇𝐴𝑇𝑆 ➪ {'..msg.TheRank..'}\n 𖡋 : 𝑀𝑆𝐺𝑆 ➪ {'..msgs..'}\n 𖡋 : 𝐵𝐼𝑂 ➪ '..bio..'',dl_cb,nil)
+		sendMsg(msg.chat_id_,msg.id_,'الايدي بالصوره معطل \n 𖡋 : ʏᴏᴜʀ ɪᴅ ➪ '..msg.sender_user_id_..' \n 𖡋 : ᴜѕᴇʀɴᴀᴍᴇ ➪ {'..UserNameID..'}\n 𖡋 : ѕᴛᴀᴛѕ ➪ {'..msg.TheRank..'}\n 𖡋 : ᴍѕɢѕ ➪ {'..msgs..'}\n 𖡋 : ʙɪᴏ ➪ '..bio..'',dl_cb,nil)
 		end
 end
 
