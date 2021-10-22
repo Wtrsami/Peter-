@@ -2236,7 +2236,7 @@ redis:del(max..'replay:'..msg.chat_id_,max..'replay_photo:group:'..msg.chat_id_,
 max..'replay_animation:group:'..msg.chat_id_,max..'replay_audio:group:'..msg.chat_id_,max..'replay_sticker:group:'..msg.chat_id_,max..'replay_video:group:'..msg.chat_id_)
 return "• تم مسح كل الردود"
 else
-return '*•* مافي ردود عشان امسحها'
+return '*•* لايوجد ردود عشان امسحها'
 end
 end
 
