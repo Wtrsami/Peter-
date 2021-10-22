@@ -207,10 +207,10 @@ local extime = (tonumber(MsgText[2]) * 86400)
 redis:setex(max..'ExpireDate:'..msg.chat_id_, extime, true)
 if not redis:get(max..'CheckExpire::'..msg.chat_id_) then 
 redis:set(max..'CheckExpire::'..msg.chat_id_,true) end
-sendMsg(msg.chat_id_,msg.id_,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... 👍🏿')
-sendMsg(SUDO_ID,0,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... 👍🏿\n• في مجموعه  » »  '..redis:get(max..'group:name'..msg.chat_id_))
+sendMsg(msg.chat_id_,msg.id_,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... ')
+sendMsg(SUDO_ID,0,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... \n• في مجموعه  » »  '..redis:get(max..'group:name'..msg.chat_id_))
 else
-sendMsg(msg.chat_id_,msg.id_,'-› عيني المطور \n- شحن الاشتراك يكون ما بين يوم الى 1000 يوم بس 🍃')
+sendMsg(msg.chat_id_,msg.id_,'-› عيني المطور \n- شحن الاشتراك يكون ما بين يوم الى 1000 يوم بس ')
 end 
 return false
 end
@@ -237,15 +237,15 @@ if MsgText[2] == '3' then
 redis:set(max..'ExpireDate:'..msg.chat_id_,true)
 if not redis:get(max..'CheckExpire::'..msg.chat_id_) then 
 redis:set(max..'CheckExpire::'..msg.chat_id_,true) end
-sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   👍🏿\n• الاشتراك » `مفتوح`  *(مدى الحياة)*')
-sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك   👍🏿\n• الاشتراك » `مفتوح`  *(مدى الحياة)*')
+sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   \n• الاشتراك » `مفتوح`  *(مدى الحياة)*')
+sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك   \n• الاشتراك » `مفتوح`  *(مدى الحياة)*')
 end 
 return false
 end
 
 
 if MsgText[1] == 'الاشتراك' and not MsgText[2] and msg.Admin then
-if not msg.Admin then return "• هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس  " end
+if not msg.Admin then return "• هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط  " end
 local check_time = redis:ttl(max..'ExpireDate:'..msg.chat_id_)
 if check_time < 0 then return '*• مـفـتـوح *🎖' end
 year = math.floor(check_time / 31536000)
@@ -275,17 +275,17 @@ end
 
 
 if MsgText[1] == "المجموعه" then
-if not msg.Admin then return "• هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "• هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 GetFullChat(msg.chat_id_,function(arg,data)
 local GroupName = (redis:get(max..'group:name'..msg.chat_id_) or '')
 redis:set(max..'linkGroup'..msg.chat_id_,(data.invite_link_ or ""))
 return sendMsg(msg.chat_id_,msg.id_,
-"• ❪ مـعـلومـات الـمـجـموعـه ❫\n\n"
-.."*•* عدد الاعـضـاء ⇜ ❪ *"..data.member_count_.."* ❫"
-.."\n*•* عدد المحظـوريـن ⇜ ❪ *"..data.kicked_count_.."* ❫"
-.."\n*•* عدد الادمـنـيـه ⇜ ❪ *"..data.administrator_count_.."* ❫"
-.."\n*•* ايدي المجموعه ⇜ ❪"..msg.chat_id_.."❫"
-.."\n\n• الاسم ⇜ ❪  ["..FlterName(GroupName).."]("..(data.invite_link_ or "")..")  ❫\n"
+"• ❪ معلومات المجموعه ❫\n\n"
+.."*•* عدد الاعضاء - ❪ *"..data.member_count_.."* ❫"
+.."\n*•* عدد المحظورين - ❪ *"..data.kicked_count_.."* ❫"
+.."\n*•* عدد الادمنيه - ❪ *"..data.administrator_count_.."* ❫"
+.."\n*•* ايدي المجموعه - ❪"..msg.chat_id_.."❫"
+.."\n\n• الاسم - ❪  ["..FlterName(GroupName).."]("..(data.invite_link_ or "")..")  ❫\n"
 )
 end,nil) 
 return false
@@ -302,27 +302,27 @@ return false
 end
 
 if MsgText[1] == "منع" then 
-if not msg.Admin then return "️*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "️*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return AddFilter(msg, MsgText[2]) 
 end
 
 if MsgText[1] == "الغاء منع" then
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return RemFilter(msg, MsgText[2]) 
 end
 
 if MsgText[1] == "قائمة المنع" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return FilterXList(msg) 
 end
 
 if MsgText[1] == "الحمايه" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس" end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط" end
 return settingsall(msg) 
 end
 
 if MsgText[1] == "الاعدادات" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس" end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط" end
 return settingsall(msg) 
 end
 
@@ -334,17 +334,17 @@ end)
 end
 
 if MsgText[1] == "الوسائط" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return media(msg) 
 end
 
 if MsgText[1] == "الادمنيه" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return GetListAdmin(msg) 
 end
 
 if MsgText[1] == "منشن" then
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 100
 },function(ta,hasn)
 local t = "\n• قائمة الاعضاء \n________________\n"
@@ -359,32 +359,32 @@ send_msg(msg.chat_id_,t,msg.id_)
 end,nil)
 end
 
-if (MsgText[1] == "منشن للمشرفين" and is_JoinChannel(msg)) then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if (MsgText[1] == "منشن المشرفين" and is_JoinChannel(msg)) then 
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return ownerlist(msg) ..GetListAdmin(msg) .. whitelist(msg)
 end
 
-if MsgText[1] == "منشن للكل" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if MsgText[1] == "منشن الكل" then 
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return ownerlist(msg) .. GetListAdmin(msg) .. whitelist(msg)
 end
 
 
 
 if MsgText[1] == "المدراء" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return ownerlist(msg) 
 end
 
 
 if MsgText[1] == "المميزين" then 
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 return whitelist(msg) 
 end
 
 
 if MsgText[1] == "صلاحياته" then 
-if not msg.Director then return "*•* هذا الامر يخص {AKS 🎖️,المالك,المدير} بس " end
+if not msg.Director then return "*•* هذا الامر يخص {🎖AKS,المالك,المدير} فقط " end
 if tonumber(msg.reply_to_message_id_) ~= 0 then 
 function prom_reply(extra, result, success) 
 Get_Info(msg,msg.chat_id_,result.sender_user_id_)
@@ -398,7 +398,7 @@ Get_Info(msg,msg.chat_id_,msg.sender_user_id_)
 end  
 end
 if MsgText[1] == "صلاحياته" and MsgText[2] and MsgText[2]:match('@[%a%d_]+') then
-if not msg.Director then return "*•* هذا الامر يخص {AKS 🎖️,المالك,المدير} بس " end
+if not msg.Director then return "*•* هذا الامر يخص {🎖AKS,المالك,المدير} فقط " end
 if tonumber(msg.reply_to_message_id_) == 0 then 
 local username = MsgText[2]
 function prom_username(extra, result, success) 
@@ -414,7 +414,7 @@ tdcli_function ({ID = "SearchPublicChat",username_ = username},prom_username,nil
 end 
 end
 if MsgText[1] == "فحص البوت" then
-if not msg.Director then return "*•* هذا الامر يخص {AKS 🎖️,المالك,المدير} بس" end
+if not msg.Director then return "*•* هذا الامر يخص {🎖AKS,المالك,المدير} فقط" end
 local Chek_Info = https.request('https://api.telegram.org/bot'..Token..'/getChatMember?chat_id='.. msg.chat_id_ ..'&user_id='.. max..'')
 local Json_Info = JSON.decode(Chek_Info)
 if Json_Info.ok == true then
@@ -431,13 +431,13 @@ if Json_Info.result.can_restrict_members == true then
 restrict = 'ꪜ' else restrict = '✘' end
 if Json_Info.result.can_promote_members == true then
 promote = 'ꪜ' else promote = '✘' end 
-return sendMsg(msg.chat_id_,msg.id_,'\n• اهلا عيني البوت هنا ادمن بالقروب \n• صلاحياته هي ⇓ \nـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n• تغير معلومات المجموعه ↞ ❪ '..info..' ❫\n• حذف الرسائل ↞ ❪ '..delete..' ❫\n• حظر المستخدمين ↞ ❪ '..restrict..' ❫\n• دعوة مستخدمين ↞ ❪ '..invite..' ❫\n• تثبيت الرسائل ↞ ❪ '..pin..' ❫\n• اضافة مشرفين جدد ↞ ❪ '..promote..' ❫\n\n- ملاحظة » علامة ❪  ꪜ ❫ يعني عنده الصلاحية وعلامة ❪ ✘ ❫ يعني ماعنده الا الضعوي')   
+return sendMsg(msg.chat_id_,msg.id_,'\n• أهلا عزيزي البوت مشرف في هده المجموعه \n• صلاحياته هي  \nـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n• تغير معلومات المجموعه  ❪ '..info..' ❫\n• حذف الرسائل  ❪ '..delete..' ❫\n• حظر المستخدمين  ❪ '..restrict..' ❫\n• دعوة مستخدمين  ❪ '..invite..' ❫\n• تثبيت الرسائل  ❪ '..pin..' ❫\n• اضافة مشرفين جدد  ❪ '..promote..' ❫\n\n- ملاحظة » علامة ❪  ꪜ ❫ يعني عنده الصلاحية وعلامة ❪ ✘ ❫ يعني ماعنده الا الضعوي')   
 end
 end
 end
 
 if MsgText[1] == "تثبيت" and msg.reply_id then
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس " end
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط " end
 local GroupID = msg.chat_id_:gsub('-100','')
 if not msg.Director and redis:get(max..'lock_pin'..msg.chat_id_) then
 return "• مايمديك التثبيت الامر مقفل من الاداره"
