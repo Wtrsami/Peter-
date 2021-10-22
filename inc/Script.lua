@@ -94,43 +94,43 @@ end
 
 function lock_photos(msg)
 if not msg.Director then 
-return "*•* هذا الامر يخص {المدير,المالك,AKS 🎖️} بس "
+return "*•* هذا الامر يخص {المدير,المالك,🎖AKS} فقط "
 end
 redis:set(max.."getidstatus"..msg.chat_id_, "Simple")
-return  "*•* أهلا عيني "..msg.TheRankCmd.."\n*•* تم عطلت الايدي بالصوره \n𓄹𓄼" 
+return  "*•* أهلا عزيزي "..msg.TheRankCmd.."\n*•* تم تعطيل الايدي بالصوره \n•" 
 end 
 function unlock_photos(msg)
 if not msg.Director then
-return "*•* هذا الامر يخص {المدير,المالك,AKS 🎖️} بس "
+return "*•* هذا الامر يخص {المدير,المالك,🎖AKS} فقط "
 end
 redis:set(max.."getidstatus"..msg.chat_id_, "Photo")
-return  "*•* اهلين عيني "..msg.TheRankCmd.."\n*•* تم فعلت الايدي بالصوره \n" 
+return  "*•* أهلا عزيزي "..msg.TheRankCmd.."\n*•* تم تفعيل الايدي بالصوره \n•" 
 end
 function cmds_on(msg)
-if not msg.Creator then return "*•* هذا الامر يخص {المالك,AKS 🎖️} بس  "
+if not msg.Creator then return "*•* هذا الامر يخص {المالك,🎖AKS} فقط  "
 end
 redis:set(max..'lock:kara:'..msg.chat_id_,'on')
-return "*•* أهلا عيني "..msg.TheRankCmd.."\n*•* تم عطلت الرفع في المجموعه \n "
+return "*•* أهلا عزيزي "..msg.TheRankCmd.."\n*•* تم تعطيل الرفع في المجموعه \n•"
 end
 function cmds_off(msg)
-if not msg.Creator then return "*•* هذا الامر يخص {المالك,AKS 🎖️} بس "
+if not msg.Creator then return "*•* هذا الامر يخص {المالك,🎖AKS} فقط "
 end
 redis:set(max..'lock:kara:'..msg.chat_id_,'off')
-return "*•* أهلين عيني "..msg.TheRankCmd.."\n*•* تم فعلت الرفع في المجموعه \n"
+return "*•* أهلا عزيزي "..msg.TheRankCmd.."\n*•* تم تفعيل الرفع في المجموعه \n•"
 end
 
 function lockjoin(msg)
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس  "
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط  "
 end
 redis:set(max..'lock:join:'..msg.chat_id_,true)
-return "**•* أهلا عيني *"..msg.TheRankCmd.."*\n*•* تم قفلت الدخول بالرابط \n *" 
+return "**•* أهلا عزيزي *"..msg.TheRankCmd.."*\n*•* تم قفل الدخول بالرابط \n•" 
 
 end
 function unlockjoin(msg)
-if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,AKS 🎖️} بس  "
+if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,🎖AKS} فقط  "
 end
 redis:del(max..'lock:join:'..msg.chat_id_)
-return "**•* أهلين عيني *"..msg.TheRankCmd.."*\n*•* تم فتحت الدخول بالرابط  \n*" 
+return "**•* أهلا عزيزي *"..msg.TheRankCmd.."*\n*•* تم فتح الدخول بالرابط  \n•" 
 end
 
 
@@ -201,7 +201,7 @@ end
 if msg.type ~= 'pv' and msg.GroupActive then 
 
 if MsgText[1] == 'شحن' and MsgText[2] then
-if not msg.SudoUser then return "• هذا الامر يخص {AKS 🎖️} بس " end
+if not msg.SudoUser then return "• هذا الامر يخص {🎖AKS} فقط " end
 if tonumber(MsgText[2]) > 0 and tonumber(MsgText[2]) < 1001 then
 local extime = (tonumber(MsgText[2]) * 86400)
 redis:setex(max..'ExpireDate:'..msg.chat_id_, extime, true)
@@ -210,28 +210,28 @@ redis:set(max..'CheckExpire::'..msg.chat_id_,true) end
 sendMsg(msg.chat_id_,msg.id_,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... 👍🏿')
 sendMsg(SUDO_ID,0,'• تم شحن الاشتراك الى `'..MsgText[2]..'` يوم   ... 👍🏿\n• في مجموعه  » »  '..redis:get(max..'group:name'..msg.chat_id_))
 else
-sendMsg(msg.chat_id_,msg.id_,'-› عيني المطور ✋🏿\n- شحن الاشتراك يكون ما بين يوم الى 1000 يوم بس 🍃')
+sendMsg(msg.chat_id_,msg.id_,'-› عيني المطور \n- شحن الاشتراك يكون ما بين يوم الى 1000 يوم بس 🍃')
 end 
 return false
 end
 
 if MsgText[1] == 'الاشتراك' and MsgText[2] then 
-if not msg.SudoUser then return "• هذا الامر يخص {AKS 🎖️} بس " end
+if not msg.SudoUser then return "• هذا الامر يخص {🎖AKS} فقط " end
 if MsgText[2] == '1' then
 redis:setex(max..'ExpireDate:'..msg.chat_id_, 2592000, true)
 if not redis:get(max..'CheckExpire::'..msg.chat_id_) then 
 redis:set(max..'CheckExpire::'..msg.chat_id_,true) 
 end
-sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   👍🏿\n• الاشتراك » `30 يوم`  *(شهر)*')
-sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك  👍🏿\n• الاشتراك » `30 يوم`  *(شهر)*')
+sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   \n• الاشتراك » `30 يوم`  *(شهر)*')
+sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك  \n• الاشتراك » `30 يوم`  *(شهر)*')
 end
 if MsgText[2] == '2' then
 redis:setex(max..'ExpireDate:'..msg.chat_id_,7776000,true)
 if not redis:get(max..'CheckExpire::'..msg.chat_id_) then 
 redis:set(max..'CheckExpire::'..msg.chat_id_,true) 
 end
-sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   👍🏿\n• الاشتراك » `90 يوم`  *(3 اشهر)*')
-sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك   👍🏿\n• الاشتراك » `90 يوم`  *(3 اشهر)*')
+sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل الاشتراك   \n• الاشتراك » `90 يوم`  *(3 اشهر)*')
+sendMsg(SUDO_ID,0,'• تم تفعيل الاشتراك   \n• الاشتراك » `90 يوم`  *(3 اشهر)*')
 end
 if MsgText[2] == '3' then
 redis:set(max..'ExpireDate:'..msg.chat_id_,true)
