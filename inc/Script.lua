@@ -369,7 +369,7 @@ if not msg.Admin then return "*•* هذا الامر يخص {الادمن,ال�
 return ownerlist(msg) .. GetListAdmin(msg) .. whitelist(msg)
 end
 
-if MsgText1] == "@all" then  
+if MsgText[1] == "@all" then  
 if not msg.Admin then return "⇠ هذا الامر يخص ( الادمن,المدير,المنشئ,المطور ) بس \n" end 
 tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)   
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,datate)  
@@ -386,7 +386,7 @@ x = x + 1
 tagname = data.first_name_  
 tagname = tagname:gsub("]","")  
 tagname = tagname:gsub("[[]","")  
-t = t..", ["..tagname..""  
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"  
 if x == 5 or x == tags or k == 0 then  
 local Text = t:gsub(',','\n')  
 local msg_id = msg.id_/2097152/0.5  
