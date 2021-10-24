@@ -2749,16 +2749,6 @@ if MsgText[1] == "ضع كليشه السورس" then
   redis:del(boss..':TEXT_SUDO1') 
   return '⇠ اهلا عيني '..msg.TheRank..'\n⇠ ابشر مسحت كليشه السورس ' 
   end
-if redis:get(boss..'text_sudo1:witting'..msg.sender_user_id_) then  استقبال كليشه السورس
-redis:del(boss..'text_sudo1:witting'..msg.sender_user_id_) 
-redis:set(boss..':TEXT_SUDO1',Flter_Markdown(msg.text))
-return sendMsg(msg.chat_id_,msg.id_, "⇠ تم سويت الكليشه  \n\n*{*  "..Flter_Markdown(msg.text).."  *}* ")
-end
-if redis:get(boss..'text_sudo1:witting'..msg.sender_user_id_) then  استقبال كليشه السورس
-redis:del(boss..'text_sudo1:witting'..msg.sender_user_id_) 
-redis:set(boss..':TEXT_SUDO1',Flter_Markdown(msg.text))
-return sendMsg(msg.chat_id_,msg.id_, "⇠ تم سويت الكليشه  \n\n*{*  "..Flter_Markdown(msg.text).."  *}* ")
-end
 
 if MsgText[1] == "التاريخ" then
 return "➖\n• الـتـاريـخ : "..os.date("%Y/%m/%d")
