@@ -2003,24 +2003,14 @@ redis:setex(max..'text_sudo:witting'..msg.sender_user_id_,1200,true)
 return '• تمام حبيبي \n• الحين قم بارسال الكليشه ' 
 end
 if MsgText[1] == "ضع كليشه السورس" then 
-
 redis:setex(max..'text_sudo1:witting'..msg.sender_user_id_,1200,true) 
-
 return '⇠ تمام عزيزي \n⇠ الحين قم بارسال الكليشه' 
-
 end
   
-
 if MsgText[1] == "مسح كليشه السورس" then 
-
 if not redis:get(max..":TEXT_SUDO1") then
-
-
-return '⇠ مافيه كليشه السورس اساساً' 
-end
-
+return '⇠ مافيه كليشه السورس اساساً' end
 redis:del(max..':TEXT_SUDO1') 
-
 return '⇠ اهلا عيني '..msg.TheRank..'\n⇠ ابشر مسحت كليشه السورس ' 
 end
 if MsgText[1] == "ضع شرط التفعيل" and MsgText[2] and MsgText[2]:match('^%d+$') then 
@@ -3562,14 +3552,6 @@ return sendMsg(msg.chat_id_,msg.id_,'('..Flter_Markdown(msg.text)..')\n •اب�
 end 
 end 
 
-if redis:get(max..'text_sudo1:witting'..msg.sender_user_id_) then  -- استقبال كليشه السورس
-redis:del(max..'text_sudo1:witting'..msg.sender_user_id_) 
-redis:set(max..':TEXT_SUDO1',Flter_Markdown(msg.text))
-
-return sendMsg(msg.chat_id_,msg.id_, "⇠ تم سويت الكليشه  \n\n*{*  "..Flter_Markdown(msg.text).."  *}* ")
-
-end
-
 
 if redis:get(max..'text_sudo:witting'..msg.sender_user_id_) then -- استقبال كليشه المطور
 redis:del(max..'text_sudo:witting'..msg.sender_user_id_) 
@@ -3595,7 +3577,16 @@ redis:del(max..'linkGroup'..msg.sender_user_id_,link)
 redis:set(max..'linkGroup'..msg.chat_id_,Flter_Markdown(msg.text)) 
 return sendMsg(msg.chat_id_,msg.id_,'• تم وسوينا الرابط الجديد  .. ')
 end
-
+if redis:get(max..'text_sudo1:witting'..msg.sender_user_id_) then  استقبال كليشه السورس
+redis:del(max..'text_sudo1:witting'..msg.sender_user_id_) 
+redis:set(max..':TEXT_SUDO1',Flter_Markdown(msg.text))
+return sendMsg(msg.chat_id_,msg.id_, "⇠ تم سويت الكليشه  \n\n*{*  "..Flter_Markdown(msg.text).."  *}* ")
+end
+if redis:get(max..'text_sudo1:witting'..msg.sender_user_id_) then  استقبال كليشه السورس
+redis:del(max..'text_sudo1:witting'..msg.sender_user_id_) 
+redis:set(max..':TEXT_SUDO1',Flter_Markdown(msg.text))
+return sendMsg(msg.chat_id_,msg.id_, "⇠ تم سويت الكليشه  \n\n*{*  "..Flter_Markdown(msg.text).."  *}* ")
+end
 if redis:get(max..'about:witting'..msg.sender_user_id_) then --- استقبال الوصف
 redis:del(max..'about:witting'..msg.sender_user_id_) 
 tdcli_function({ID="ChangeChannelAbout",channel_id_=msg.chat_id_:gsub('-100',''),about_ = msg.text},function(arg,data) 
@@ -4822,6 +4813,9 @@ max = {
 '^(تنزيل ادمن) (%d+)$', 
 '^(رفع مطي)$',
 '^(تنزيل مطي)$', 
+"^(@all)$",
+"^(ضع كليشه السورس)$",
+"^(مسح كليشه السورس)$",
 '^(رفع زاحف)$',
 '^(تنزيل زاحف)$', 
 '^(رفع المدير)$',
@@ -5069,8 +5063,6 @@ max = {
 "^(م٥)$",
 "^(التسلية)$",
 "^(يوتيوب)$", 
-"^(ضع كليشه السورس)$", 
-"^(مسح كليشه السورس)$", 
 "^(ساوند)$", 
 "^(اضف رد عشوائي عام)$", 
 "^(مسح رد عشوائي عام)$", 
