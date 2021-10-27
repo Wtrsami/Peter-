@@ -2035,9 +2035,10 @@ return sendMsg(msg.chat_id_,msg.id_,"⇠ ابشر مسحت كليشة الايد
 end
 if MsgText[1] == 'تعيين كليشه الايدي عام' or MsgText[1] == 'عام تعيين الايدي' or MsgText[1] == 'تعيين ايدي عام'  or MsgText[1] == 'تعيين كليشة الايدي عام'  or MsgText[1] == 'تعيين كليشه الايدي عام' then  
 if not msg.SudoUser then return "⇠ هذا الامر يخص ( المطور ) بس  \n" end 
-if not msg.SudoBase and not redis:get(max.."lockidedit") then return "⇠ تعيين الايدي معطل من قبل مطور الاساسي  \n" end 
+end 
 redis:setex(max..":Witting_KleshaID"..msg.chat_id_..msg.sender_user_id_,1000,true) 
-return   "تمام , الحين ارسل كليشه الايدي الجديده ⇜"
+return  [[
+⇜ تمام , الحين ارسل كليشه الايدي الجديده 
  مع العلم ان الاختصارات كالاتي : 
  
 {الايدي} ➪ لوضع ايدي المستخدم
@@ -2050,7 +2051,10 @@ return   "تمام , الحين ارسل كليشه الايدي الجديده 
 {البايو} ➪ لاظهار بايو المستخدم
 
 ༄
+]]
+
 end
+
 if MsgText[1] == "المشتركين" or MsgText[1] == "المشتركين Ⓜ" then
 if not msg.SudoUser then return "*-›* هذا الامر يخص {LEADER} بس  " end
 return '*•* عدد المشتركين في البوت : `'..redis:scard(max..'users')..'` '
