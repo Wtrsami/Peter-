@@ -2054,7 +2054,12 @@ end
 if MsgText[1] == 'المطور' then
 return redis:get(max..":TEXT_SUDO") or '• لا توجد كليشه المطور .\n• يمديك اضافه كليشه من خلال الامر\n       " `ضع كليشه المطور` " \n📡'
 end
-
+if MsgText[1] == 'السورس' or  MsgText[1] == 'سورس البوت' or  MsgText[1] == 'سورس' then
+GetUserID(SUDO_ID,function(arg,data)
+local SUDO_NAME = '['..Flter_Markdown(data.first_name_..' '..(data.last_name_ or ""))..'](tg://user?id='..SUDO_ID..')'
+return send_msg(msg.chat_id_,redis:get(max..":TEXT_SUDO1") or SUDO_NAME,msg.id_)
+end,nil)
+end
 if MsgText[1] == "اذاعه عام بالتوجيه" or MsgText[1] == "اذاعه عام بالتوجيه 📣" then
 if not msg.SudoUser then return"*•* هذا الامر يخص {LEADER} بس  " end
 if not msg.SudoBase and not redis:get(max..'lock_brod') then 
