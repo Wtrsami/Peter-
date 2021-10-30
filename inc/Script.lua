@@ -1520,7 +1520,7 @@ end
 		Text = Text:gsub('{نقاطك}',nko)
 		Text = Text:gsub('{البايو}',bio)
 		sendMsg(msg.chat_id_,msg.id_,Flter_Markdown(Text))
-		end
+		
 
 else
 	if redis:get(max.."KLISH:ID"..msg.chat_id_) then
