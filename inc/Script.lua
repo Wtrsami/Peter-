@@ -2026,7 +2026,7 @@ end
 if MsgText[1] == 'المجموعات' or MsgText[1] == "المجموعات 🌋" then
 if not msg.SudoUser then return "*-›* هذا الامر يخص {LEADER} بس  " end
 return '*•* عدد المجموعات المفعلة » `'..redis:scard(max..'group:ids')..'`  ➼' 
-end
+
 
 if MsgText[1] == "المشتركين" or MsgText[1] == "المشتركين Ⓜ" then
 if not msg.SudoUser then return "*-›* هذا الامر يخص {LEADER} بس  " end
