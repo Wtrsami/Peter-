@@ -1520,10 +1520,11 @@ end
 		Text = Text:gsub('{نقاطك}',nko)
 		Text = Text:gsub('{البايو}',bio)
 		sendMsg(msg.chat_id_,msg.id_,Flter_Markdown(Text))
+	end
 		
 
 else
-	if redis:get(max.."KLISH:ID"..msg.chat_id_) then
+	if not redis:get(max.."KLISH:ID"..msg.chat_id_) then
 		Text = redis:get(max.."KLISH:ID"..msg.chat_id_)
 		Text = Text:gsub('{الايدي}',msg.sender_user_id_)
 		Text = Text:gsub('{اليوزر}',UserNameID)
