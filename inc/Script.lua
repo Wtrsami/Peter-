@@ -1521,7 +1521,7 @@ end
 		Text = Text:gsub('{البايو}',bio)
 		sendMsg(msg.chat_id_,msg.id_,Flter_Markdown(Text))
 		end
-	end
+
 else
 	if redis:get(max.."KLISH:ID"..msg.chat_id_) then
 		Text = redis:get(max.."KLISH:ID"..msg.chat_id_)
