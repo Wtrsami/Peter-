@@ -369,19 +369,7 @@ if not msg.Admin then return "*•* هذا الامر يخص {الادمن,ال�
 return ownerlist(msg) .. GetListAdmin(msg) .. whitelist(msg)
 end
 
-if MsgText[1] == "@all" then  
-if not msg.Admin then return "⇠ هذا الامر يخص ( الادمن,المدير,المنشئ,المطور ) بس \n" end 
-tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)   
-tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,datate)  
-x = 0  
-tags = 0  
-local list = datate.members_   
-for k, v in pairs(list) do  
-tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)  
-if x == 5 or x == tags or k == 0 then  
-tags = x + 5  
-t = "#all"  
-end  
+  
 x = x + 1  
 tagname = data.first_name_  
 tagname = tagname:gsub("]","")  
