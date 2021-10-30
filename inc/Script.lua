@@ -368,7 +368,35 @@ if MsgText[1] == "منشن للكل" then
 if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
 return ownerlist(msg) .. GetListAdmin(msg) .. whitelist(msg)
 end
-
+
+if MsgText[1] == "@all" then  
+if not msg.Admin then return "⇠ هذا الامر يخص ( الادمن,المدير,المنشئ,المطور ) بس \n" end 
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa)   
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,datate)  
+x = 0  
+tags = 0  
+local list = datate.members_   
+for k, v in pairs(list) do  
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)  
+if x == 5 or x == tags or k == 0 then  
+tags = x + 5  
+t = "#all"  
+end  
+x = x + 1  
+tagname = data.first_name_  
+tagname = tagname:gsub("]","")  
+tagname = tagname:gsub("[[]","")  
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"  
+if x == 5 or x == tags or k == 0 then  
+local Text = t:gsub(',','\n')  
+local msg_id = msg.id_/2097152/0.5  
+https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown")  
+end  
+end,nil)  
+end  
+end,nil)  
+end,nil)  
+end
 
 
 if MsgText[1] == "المدراء" then 
@@ -1504,7 +1532,6 @@ if redis:get(max.."getidstatus"..msg.chat_id_) == "Photo" then
 		Text = Text:gsub('{البايو}',bio)
 		sendPhoto(msg.chat_id_,msg.id_,data.photos_[0].sizes_[1].photo_.persistent_id_,Flter_Markdown(Text),dl_cb,nil)
 		end
-end
 	else
 		if not redis:get(max.."KLISH:ID"..msg.chat_id_) then
 		sendMsg(msg.chat_id_,msg.id_,' } مايمديني اطلع صورتك لانك يا حاظر البوت او ماحطيت صورة ...!\n 𖡋 : ʏᴏᴜʀ ɪᴅ ➪'..msg.sender_user_id_..' }\n 𖡋 : ᴜѕᴇʀɴᴀᴍᴇ ➪ {'..UserNameID..'}\n 𖡋 : ѕᴛᴀᴛѕ ➪ {'..msg.TheRank..'}\n 𖡋 : ᴍѕɢѕ ➪ {'..msgs..'}\n 𖡋 : ʙɪᴏ ➪ '..bio..'',dl_cb,nil)
@@ -1520,10 +1547,10 @@ end
 		Text = Text:gsub('{نقاطك}',nko)
 		Text = Text:gsub('{البايو}',bio)
 		sendMsg(msg.chat_id_,msg.id_,Flter_Markdown(Text))
-end		
-
+		end
+	end
 else
-	if not redis:get(max.."KLISH:ID"..msg.chat_id_) then
+	if redis:get(max.."KLISH:ID"..msg.chat_id_) then
 		Text = redis:get(max.."KLISH:ID"..msg.chat_id_)
 		Text = Text:gsub('{الايدي}',msg.sender_user_id_)
 		Text = Text:gsub('{اليوزر}',UserNameID)
@@ -1999,6 +2026,33 @@ end
 if MsgText[1] == 'المجموعات' or MsgText[1] == "المجموعات 🌋" then
 if not msg.SudoUser then return "*-›* هذا الامر يخص {LEADER} بس  " end
 return '*•* عدد المجموعات المفعلة » `'..redis:scard(max..'group:ids')..'`  ➼' 
+end
+if MsgText[1] == 'مسح كليشه الايدي عام' or MsgText[1] == 'مسح الايدي عام' or MsgText[1] == 'مسح ايدي عام'  or MsgText[1] == 'مسح كليشة الايدي عام' or MsgText[1] == 'مسح كليشه الايدي عام' then  
+if not msg.SudoUser then return "⇠ هذا الامر يخص ( المطور ) بس  \n" end 
+if not msg.SudoBase and not redis:get(max.."lockidedit") then return "⇠ الامر معطل من قبل مطور الاساسي  \n" end 
+redis:del(max..":infoiduser") 
+return sendMsg(msg.chat_id_,msg.id_,"⇠ ابشر مسحت كليشة الايدي العام  ") 
+end
+if MsgText[1] == 'تعيين كليشه الايدي عام' or MsgText[1] == 'عام تعيين الايدي' or MsgText[1] == 'تعيين ايدي عام'  or MsgText[1] == 'تعيين كليشة الايدي عام'  or MsgText[1] == 'تعيين كليشه الايدي عام' then  
+if not msg.SudoUser then return "⇠ هذا الامر يخص ( المطور ) بس  \n" end 
+end 
+redis:setex(max..":Witting_KleshaID"..msg.chat_id_..msg.sender_user_id_,1000,true) 
+return  [[
+⇜ تمام , الحين ارسل كليشه الايدي الجديده 
+ مع العلم ان الاختصارات كالاتي : 
+ 
+{الايدي} ➪ لوضع ايدي المستخدم
+{اليوزر} ➪ لوضع معرف المستخدم 
+{الرتبه}  ➪ لوضع نوع رتبه المستخدم 
+{التفاعل} ➪ لوضع تفاعل المستخدم 
+{الرسائل} ➪ لاظهار عدد الرسائل 
+{نقاطك} ➪ لاظهار عدد المجوهرات 
+{التعديل} ➪ لاظهار عدد التعديلات  
+{البايو} ➪ لاظهار بايو المستخدم
+
+༄
+]]
+
 end
 
 if MsgText[1] == "المشتركين" or MsgText[1] == "المشتركين Ⓜ" then
@@ -3103,6 +3157,7 @@ local keyboard = {
 {"تعطيل البوت خدمي","تفعيل البوت خدمي","المطورين 🔥"},
  {"المشتركين Ⓜ","المجموعات 🌋","الاحصائيات 💥"},
  {"اضف رد عام ➕","الردود العامه 🗨"},
+{"مسح كليشه الايدي عام","تعيين كليشه الايدي عام"},
   {"اذاعه 🗣","اذاعه خاص 🗣"},
 {"اذاعه عام 📢","اذاعه عام بالتوجيه 📣"},
  {"تحديث ♻️","قائمه العام 📜","ايديي🆔"},
@@ -5050,4 +5105,4 @@ max = {
  },
  imax = imax,
  dmax = dmax,
- }
+ }
