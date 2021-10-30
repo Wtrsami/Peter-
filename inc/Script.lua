@@ -368,23 +368,7 @@ if MsgText[1] == "منشن للكل" then
 if not msg.Admin then return "*•* هذا الامر يخص {الادمن,المدير,المالك,LEADER} بس " end
 return ownerlist(msg) .. GetListAdmin(msg) .. whitelist(msg)
 end
-
-  
-x = x + 1  
-tagname = data.first_name_  
-tagname = tagname:gsub("]","")  
-tagname = tagname:gsub("[[]","")  
-t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"  
-if x == 5 or x == tags or k == 0 then  
-local Text = t:gsub(',','\n')  
-local msg_id = msg.id_/2097152/0.5  
-https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown")  
-end  
-end,nil)  
-end  
-end,nil)  
-end,nil)  
-end
+
 
 
 if MsgText[1] == "المدراء" then 
