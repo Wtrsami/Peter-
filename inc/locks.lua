@@ -4,12 +4,12 @@
 ---------------Lock ------------------- 
 function unlock_waring(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if redis:get(max..'lock_woring'..msg.chat_id_) then 
-message = "*•* اهلين 「 "..Qx7777.." 」 \n*•* التحذير مفعل من قبل \n𓄹𓄼 " 
+message = "*•* أهلا بك "..Xlll2.." \n*•* التحذير مفعل مسبقاً\n" 
 else redis:set(max..'lock_woring'..msg.chat_id_,true)
-message = "*•* اهلين 「 "..Qx7777.." 」\n*•*  ابشر تــم تفعيل التحذير \n𓄹𓄼 " 
+message = "*•* أهلا بك "..Xlll2.." \n*•*  تم تفعيل التحذير\n" 
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -18,13 +18,13 @@ end
  
 function lock_waring(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..'lock_woring'..msg.chat_id_) then 
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•* التحذير معطل من قبل \n𓄹𓄼" 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* التحذير معطل مسبقاً \n" 
 else
 redis:del(max..'lock_woring'..msg.chat_id_) 
-message =  '*•* من عيوني تم تعطيل التحذير \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل التحذير \n*•* بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -33,13 +33,13 @@ end
 
 function lock_ID(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..'lock_id'..msg.chat_id_) then 
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•* الايدي معطل من قبل \n𓄹𓄼" 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* الايدي معطل مسبقاً \n" 
 else
 redis:del(max..'lock_id'..msg.chat_id_) 
-message =  '*•* من عيوني تم تعطيل الايدي\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل الايدي\n*•*  بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -48,13 +48,13 @@ end
 
 function unlock_ID(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if redis:get(max..'lock_id'..msg.chat_id_) then 
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•* امر الايدي شغال من قبل \n𓄹𓄼" 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* تم تفعيل الايدي مسبقاً \n" 
 else 
 redis:set(max..'lock_id'..msg.chat_id_,true)  
-message =  '*•* من عيوني تم تفعيل الايدي \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الايدي  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -63,12 +63,12 @@ end
 
 function unlock_Welcome(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*-›* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if redis:get(max..'welcome:get'..msg.chat_id_) then 
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•* تفعيل الترحيب مفعل من قبل \n𓄹𓄼" 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* تم تفعيل الترحيب مسبقاً \n" 
 else redis:set(max..'welcome:get'..msg.chat_id_,true)  
-message =  '*•* من عيوني تم تفعيل الترحيب \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الترحيب \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -77,13 +77,13 @@ end
 
 function lock_Welcome(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المنشئ,المطور} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {الادمن,المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..'welcome:get'..msg.chat_id_) then 
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•* الترحيب معطل من قبل \n𓄹𓄼" 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* الترحيب معطل مسبقاً \n" 
 else
 redis:del(max..'welcome:get'..msg.chat_id_) 
-message =  '*•* من عيوني تم تعطيل الترحيب\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل الترحيب\n*•*  بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -92,8 +92,8 @@ end
 
 function lock_All(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 redis:mset(
 max..'lock_username'..msg.chat_id_,true,
 max..'mute_gif'..msg.chat_id_,true,
@@ -114,7 +114,7 @@ max..'lock_webpage'..msg.chat_id_,true,
 max..'mute_video'..msg.chat_id_,true,
 max..'mute_inline'..msg.chat_id_,true
 )
-message =  "*•* اهلين 「 "..Qx7777.." 」\n*•*  ابشر تــم قفل الكل \n𓄹𓄼  " 
+message =  "*•* أهلا بك "..Xlll2.." \n*•* تم قفل الكل \n• " 
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
@@ -122,8 +122,8 @@ end
 
 function Unlock_All(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 redis:del(
 max..'lock_username'..msg.chat_id_,
 max..'mute_gif'..msg.chat_id_,
@@ -149,15 +149,15 @@ max..':tqeed_fwd:'..msg.chat_id_,
 max..':tqeed_link:'..msg.chat_id_,
 max..'mute_inline'..msg.chat_id_
 )
-message =  '*•* من عيوني تم فتح الكل \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الكل\n'
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
 
 function lock_Media(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n" )end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n" )end
 redis:mset(
 max..'mute_gif'..msg.chat_id_,true,
 max..'mute_photo'..msg.chat_id_,true,
@@ -166,15 +166,15 @@ max..'mute_voice'..msg.chat_id_,true,
 max..'mute_sticker'..msg.chat_id_,true,
 max..'mute_video'..msg.chat_id_,true
 )
-message =  '*•* من عيوني تم قفل الوسائط\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الوسائط\n*•*  بواسطة : '..Xlll2..'\n'
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
 
 function Unlock_Media(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n" )end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n" )end
 redis:del(
 max..'mute_gif'..msg.chat_id_,
 max..'mute_photo'..msg.chat_id_,
@@ -183,21 +183,21 @@ max..'mute_voice'..msg.chat_id_,
 max..'mute_sticker'..msg.chat_id_,
 max..'mute_video'..msg.chat_id_
 )
-message =  '*•* من عيوني تم فتح الوسائط \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الوسائط\n'
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
 
 function tqeed_photo(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n" )end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n" )end
 if redis:get(max..':tqeed_photo:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالصور مقفل من قبل \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الصور بالتقييد مسبقاً \n'
 else
 redis:del(max..'mute_photo'..msg.chat_id_)
 redis:set(max..':tqeed_photo:'..msg.chat_id_,true)
-message =  '*•* ابشر تم قفل الصور بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الصور بالتقييد \n*•*  بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -205,13 +205,13 @@ end
 
 function fktqeed_photo(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_photo:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالصور مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الصور بالتقييد مسبقاً \n'
 else 
 redis:del(max..':tqeed_photo:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الصور بالتقييد \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الصور بالتقييد \n '
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -220,14 +220,14 @@ end
 ---------------Lock -------------------
 function tqeed_video(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n" )end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n" )end
 if redis:get(max..':tqeed_video:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالفيديو مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الفيديو بالتقييد مسبقاً \n'
 else
 redis:del(max..':tqeed_video:'..msg.chat_id_)
 redis:set(max..':tqeed_video:'..msg.chat_id_,true)
-message =  '*•* ابشر تم قفل الفيديو بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الفيديو بالتقييد \n*•*  بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -235,13 +235,13 @@ end
 
 function fktqeed_video(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id.msg.id_,"️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id.msg.id_,"️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_video:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالفيديو مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الفيديو بالتقييد مسبقاً \n'
 else 
 redis:del(max..':tqeed_video:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الفيديو بالتقييد \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الفيديو بالتقييد \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -250,14 +250,14 @@ end
 ---------------Lock -------------------
 function tqeed_gif(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if redis:get(max..':tqeed_gif:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالمتحركه مقفل من قبل \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل المتحركه بالتقييد مسبقاً \n'
 else
 redis:del(max..'mute_gif'..msg.chat_id_)
 redis:set(max..':tqeed_gif:'..msg.chat_id_,true)
-message =  '*•* ابشر تم قفل التوجيه بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل المتحركه بالتقييد \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -265,13 +265,13 @@ end
 
 function fktqeed_gif(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_gif:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد المتحركه مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح المتحركه بالتقييد مسبقاً\n'
 else 
 redis:del(max..':tqeed_gif:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح المتحركه بالتقييد \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح المتحركه بالتقييد\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -280,14 +280,14 @@ end
 ---------------Lock -------------------
 function tqeed_fwd(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n" ) end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_, "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n" ) end
 if redis:get(max..':tqeed_fwd:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالتوجيه مقفل من قبل  \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل التوجيه بالتقييد مسبقاً \n'
 else
 redis:del(max..'mute_forward'..msg.chat_id_)
 redis:set(max..':tqeed_fwd:'..msg.chat_id_,true)
-message =  '*•* ابشر تم قفل التوجيه بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التوجيه بالتقييد \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -295,13 +295,13 @@ end
 
 function fktqeed_fwd(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_fwd:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالتوجيه مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التوجيه بالتقييد مسبقاً \n'
 else 
 redis:del(max..':tqeed_fwd:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تـــم فتح التوجيه بالتقييد \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التوجيه بالتقييد \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -310,13 +310,13 @@ end
 ---------------Lock -------------------
 function tqeed_link(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if redis:get(max..':tqeed_link:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالروابط مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الروابط بالتقييد مسبقاً \n'
 else
 redis:set(max..':tqeed_link:'..msg.chat_id_,true)
-message =  '*•* ابشر تم قفل الروابط بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الروابط بالتقييد \n*•*  بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -324,13 +324,13 @@ end
 
 function fktqeed_link(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return sendMsg(msg.chat_id_,msg.id_,  "️*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_link:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالروابط مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الروابط مسبقاً \n'
 else 
 redis:del(max..':tqeed_link:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الروابط بالتقييد \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الروابط بالتقييد \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -339,13 +339,13 @@ end
 ---------------Lock -------------------
 function tqeed_photo(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if redis:get(max..':tqeed_photo:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالصور مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الصور بالتقييد مسبقاً\n'
 else
 redis:set(max..':tqeed_photo:'..msg.chat_id_,true)
-message =  '*•* ابشىر تم قفل الصور بالتقييد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الصور بالتقييد \n*•* بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -353,13 +353,13 @@ end
 
 function fktqeed_photo(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Director then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {المدير,المالك,MR} فقط  \n") end
 if not redis:get(max..':tqeed_photo:'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التقييد بالصور مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الصور بالتقييد مسبقاً \n'
 else 
 redis:del(max..':tqeed_photo:'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الصور بالتقييد \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الصور بالتقييد \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -367,13 +367,13 @@ end
 ---------------Lock twasel-------------------
 function lock_twasel(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص المطور فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط  \n") end
 if redis:get(max..'lock_twasel') then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التواصل بالتاكيد تــ✓ــم تعطيله \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تعطيل التواصل مسبقاً\n'
 else
 redis:set(max..'lock_twasel',true)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  تــ✓ــم تعطيل التواصل  \n𓄹𓄼'
+message =  '*•*  تم تعطيل التواصل\n بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -381,13 +381,13 @@ end
 
 function unlock_twasel(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*-›* هذا الامر يخص المطور فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط  \n") end
 if not redis:get(max..'lock_twasel') then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التواصل بالتاكيد تــ✓ــم تفعيله \n'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل التواصل مسبقاً\n'
 else 
 redis:del(max..'lock_twasel')
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  تــ✓ــم تفعيل التواصل \n'
+message =  '*•* أهلا بك  '..Xlll2..' \n*•* تم تفعيل التواصل \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -396,26 +396,26 @@ end
 ---------------Lock bro-------------------
 function lock_brod(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص المطور فقط  ") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط\n ") end
 if not redis:get(max..'lock_brod') then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* اذاعه المطورين بالتاكيد تــ✓ــم تعطيله '
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم تعطيل اذاعة MR مسبقاً\n'
 else
 redis:del(max..'lock_brod')
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  تــ✓ــم تعطيل اذاعه المطورين  '
+message =  '*•* تم تعطيل اذاعة MR\n بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
 function unlock_brod(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص المطور فقط  ") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط  ") end
 if redis:get(max..'lock_brod') then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* اذاعه المطورين بالتاكيد تــ✓ــم تفعيله '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* اذاعة تفعيل تم MR مسبقاً\n'
 else 
 redis:set(max..'lock_brod',true)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  تــ✓ــم تفعيل اذاعه المطورين  '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل اذاعة MR\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -424,13 +424,13 @@ end
 ---------------Lock replay-------------------
 function lock_replay(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_   "*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'replay'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الردود معطله من قبل \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تعطيل الردود مسبقاً \n'
 else
 redis:del(max..'replay'..msg.chat_id_)
-message =  '*•* من عيوني تم تعطيل الردود\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل الردود\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -438,13 +438,13 @@ end
 
 function unlock_replay(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_  "*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'replay'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الردود مفعله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الردود مسبقاً \n'
 else 
 redis:set(max..'replay'..msg.chat_id_,true)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم تفعيل الردود \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الردود \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -453,13 +453,13 @@ end
 ---------------Lock replay all-------------------
 function lock_replayall(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_  "*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'replayall'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* ردود المطور معطله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تعطيل ردود MR مسبقاً\n'
 else
 redis:set(max..'replayall'..msg.chat_id_,true)
-message =  '*•*ابشر تم تعطيل ردود المطور \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل ردود MR\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -467,13 +467,13 @@ end
 
 function unlock_replayall(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_  "*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'replayall'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* ردود المطور مفعله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل ردود MR  مسبقاً\n'
 else 
 redis:del(max..'replayall'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم تفعيل ردود المطور \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل ردود MR \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -482,13 +482,13 @@ end
 ---------------Lock bot service-------------------
 function lock_service(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*-›* هذا الامر يخص المطور فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط  \n") end
 if not redis:get(max..'lock_service') then
-message =  '*-›* اهلين 「 '..Qx7777..' 」\n*-*  تــ✓ــم بالتاكيد تعطيل نظام البوت خدمي '
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم تعطيل نظام البوت خدمي مسبقاً\n'
 else
 redis:del(max..'lock_service')
-message =  '*-›* اهلين 「 '..Qx7777..' 」\n*-*  تــ✓ــم  تعطيل نظام البوت خدمي '
+message =  '*•* تم تعطيل نظام البوت خدمي\n بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -496,13 +496,13 @@ end
 
 function unlock_service(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*-›* هذا الامر يخص المطور فقط  \n") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.SudoBase then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص {MR} فقط  \n") end
 if redis:get(max..'lock_service') then
-message =  '*-›* اهلين 「 '..Qx7777..' 」\n*-*  تــ✓ــم بالتأكيد تفعيل نظام البوت خدمي '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل نظام البوت خدمي مسبقاً\n'
 else 
 redis:set(max..'lock_service',true)
-message =  '*-›* اهلين 「 '..Qx7777..' 」\n*-*  تــ✓ــم تفعيل نظام البوت خدمي \n- اصبح البوت الان بامكان اي شخص\n- ان يستخدم البوت للتفعيل'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل نظام البوت خدمي\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -511,13 +511,13 @@ end
 ---------------Lock Link-------------------
 function lock_link(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return sendMsg(msg.chat_id_,msg.id_   "*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_link'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الروابط مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* الروابط مقفله من قبل \n'
 else
 redis:set(max..'lock_link'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الروابط \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الروابط \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -525,13 +525,13 @@ end
 
 function unlock_link(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_link'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الروابط مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الروابط مسبقاً \n'
 else 
 redis:del(max..'lock_link'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الروابط \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الروابط \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -540,13 +540,13 @@ end
 ---------------Lock Tag-------------------
 function lock_tag(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_tag'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التاق (#) مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* التاق مقفل مسبقاً \n'
 else
 redis:set(max..'lock_tag'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل التاق (#) \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التاق \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -554,14 +554,14 @@ end
 
 function unlock_tag(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_tag'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التاق(#) مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التاق مسبقاً \n'
 else 
 redis:del(max..'lock_tag'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح التاق (#) \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التاق \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -569,14 +569,14 @@ end
 ---------------Lock UserName-------------------
 function lock_username(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 
 if redis:get(max..'lock_username'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* المعرفات @ مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل المعرفات مسبقاً\n'
 else
 redis:set(max..'lock_username'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل المعرفات @ \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل المعرفات \n*•* بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -584,13 +584,13 @@ end
 
 function unlock_username(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_username'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* المعرفات مفتوحه من قبل @ \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح المعرفات مسبقاً\n'
 else 
 redis:del(max..'lock_username'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح المعرفات @ \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح المعرفات \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -599,13 +599,13 @@ end
 ---------------Lock Edit-------------------
 function lock_edit(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_edit'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التعديل مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل التعديل مسبقاً\n'
 else
 redis:set(max..'lock_edit'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل التعديل \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التعديل\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -613,13 +613,13 @@ end
 
 function unlock_edit(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_edit'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التعديل مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التعديل مسبقاً\n'
 else 
 redis:del(max..'lock_edit'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح التعديل\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح التعديل \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -628,13 +628,13 @@ end
 ---------------Lock spam-------------------
 function lock_spam(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if   redis:get(max..'lock_spam'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الكلايش مقفول من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الكلايش مسبقاً \n'
 else
 redis:set(max..'lock_spam'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الكلايش \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الكلايش \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -642,13 +642,13 @@ end
 
 function unlock_spam(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_spam'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الكلايش مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الكلايش مسبقاً\n'
 else 
 redis:del(max..'lock_spam'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تـم فتح الكلايش \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الكلايش \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -657,13 +657,13 @@ end
 ---------------Lock Flood-------------------
 function lock_flood(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_flood'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التكرار مقفل من قبل\n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل التكرار مسبقاً\n'
 else
 redis:set(max..'lock_flood'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل التكرار\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التكرار\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -671,13 +671,13 @@ end
 
 function unlock_flood(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_flood'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التكرار مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التكرار مسبقاً\n'
 else 
 redis:del(max..'lock_flood'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح التكرار \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التكرار\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -686,13 +686,13 @@ end
 ---------------Lock Bots-------------------
 function lock_bots(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_bots'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* البوتات مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل البوتات مسبقاً \n'
 else
 redis:set(max..'lock_bots'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل البوتات\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل البوتات\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -700,14 +700,14 @@ end
 
 function unlock_bots(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_bots'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* البوتات مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح البوتات مسبقاً\n'
 else 
 redis:del(max..'lock_bots_by_kick'..msg.chat_id_)
 redis:del(max..'lock_bots'..msg.chat_id_)
-message =  '*•›* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح البوتات \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح البوتات \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -716,13 +716,13 @@ end
 ---------------Lock Join-------------------
 function lock_join(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_join'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الاضافه مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الاضافه مسبقاً\n'
 else
 redis:set(max..'lock_join'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الاضافه\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الاضافه\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -730,13 +730,13 @@ end
 
 function unlock_join(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_join'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الاضافه مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الاضافه مسبقاً\n'
 else 
 redis:del(max..'lock_join'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الاضافه \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الاضافه\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -745,13 +745,13 @@ end
 ---------------Lock Markdown-------------------
 function lock_markdown(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_markdown'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الماركدوان مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* الماركدوان مقفل مسبقاً\n'
 else
 redis:set(max..'lock_markdown'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الماركدوان\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الماركدوان\n*•* بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -759,13 +759,13 @@ end
 
 function unlock_markdown(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_markdown'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الماركدوان مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الماركدوان مسبقاً\n'
 else 
 redis:del(max..'lock_markdown'..msg.chat_id_)
-message =  '*-›* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الماركدوان \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الماركدوان \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -774,13 +774,13 @@ end
 ---------------Lock Webpage-------------------
 function lock_webpage(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_webpage'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الويب مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الويب مسبقاً \n'
 else
 redis:set(max..'lock_webpage'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الويب \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الويب \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -788,13 +788,13 @@ end
 
 function unlock_webpage(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'lock_webpage'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الويب مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الويب مسبقاً\n'
 else 
 redis:del(max..'lock_webpage'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الويب \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الويب \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -802,13 +802,13 @@ end
 ---------------Mute Gif-------------------
 function mute_gif(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_gif'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* المتحركه مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل المتحركه مسبقاً \n'
 else
 redis:set(max..'mute_gif'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل المتحركه \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل المتحركه \n*•* بواسطة : '..Xlll2..'  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -816,13 +816,13 @@ end
 
 function unmute_gif(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_gif'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* المتحركه مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح المتحركه مسبقاً \n'
 else 
 redis:del(max..'mute_gif'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح المتحركه \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح المتحركه\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -830,13 +830,13 @@ end
 ---------------Mute Game-------------------
 function mute_game(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_game'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الالعاب مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تعطيل الالعاب مسبقاً\n'
 else
 redis:set('mute_game'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الالعاب\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم تعطيل الالعاب\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -844,13 +844,13 @@ end
 
 function unmute_game(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_game'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الألعاب مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الألعاب مسبقاً\n'
 else 
 redis:del(max..'mute_game'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الألعاب \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم تفعيل الألعاب \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -858,13 +858,13 @@ end
 ---------------Mute Inline-------------------
 function mute_inline(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_inline'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الانلاين مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الانلاين مسبقاً\n'
 else
 redis:set(max..'mute_inline'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الانلاين \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الانلاين \n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -872,13 +872,13 @@ end
 
 function unmute_inline(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_inline'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الانلاين مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الانلاين مسبقاً \n'
 else 
 redis:del(max..'mute_inline'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الانلاين\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح الانلاين '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -886,13 +886,13 @@ end
 ---------------Mute Text-------------------
 function mute_text(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_text'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  الدرشه مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم قفل الدردشه مسبقاً \n'
 else
 redis:set(max..'mute_text'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الدردشه\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الدردشه\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -900,13 +900,13 @@ end
 
 function unmute_text(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_text'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الدردشه مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الدردشه مسبقاً\n'
 else 
 redis:del(max..'mute_text'..msg.chat_id_,true)
-message =  '*•* من عيوني تم فتح الدردشه \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الدردشه \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -914,13 +914,13 @@ end
 ---------------Mute photo-------------------
 function mute_photo(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_photo'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  الصور مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم قفل الصور مسبقاً \n'
 else
 redis:set(max..'mute_photo'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الصور \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الصور \n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -928,13 +928,13 @@ end
 
 function unmute_photo(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_photo'..msg.chat_id_)then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الصور مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الصور مسبقاً\n'
 else 
 redis:del(max..'mute_photo'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الصور \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم فتح الصور\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -942,13 +942,13 @@ end
 ---------------Mute Video-------------------
 function mute_video(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_video'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  الفيديو مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم قفل الفيديو مسبقاً\n'
 else
 redis:set(max..'mute_video'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الفيديو \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الفيديو \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -956,13 +956,13 @@ end
 
 function unmute_video(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_video'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الفيديو مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الفيديو مسبقاً\n'
 else 
 redis:del(max..'mute_video'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الفيديو \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح الفيديو \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -970,14 +970,14 @@ end
 ---------------Mute Audio-------------------
 function mute_audio(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_audio'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  البصمات مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل البصمات مسبقاً \n'
 else
 redis:set(max..'mute_audio'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل البصمات \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل البصمات \n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -985,13 +985,13 @@ end
 
 function unmute_audio(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_audio'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  البصمات مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم فتح البصمات مسبقاً\n'
 else 
 redis:del(max..'mute_audio'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح البصمات \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح البصمات \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -999,14 +999,14 @@ end
 ---------------Mute Voice-------------------
 function mute_voice(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
-if   redis:get(max..'mute_voice'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  الصوت مقفل من قبل \n𓄹𓄼'
+if redis:get(max..'mute_voice'..msg.chat_id_) then
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم قفل الصوت مسبقاً \n'
 else
 redis:set(max..'mute_voice'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الصوت\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الصوت\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1014,13 +1014,13 @@ end
 
 function unmute_voice(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_voice'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  الصوت مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•*  تم فتح الصوت مسبقاً \n'
 else 
 redis:del(max..'mute_voice'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الصوت\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح الصوت\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1028,16 +1028,16 @@ end
 ---------------Mute Sticker-------------------
 function mute_sticker(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 
 if   redis:get(max..'mute_sticker'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الملصقات مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الملصقات مسبقاً \n'
 else
 redis:set(max..'mute_sticker'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الملصقات\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الملصقات\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1045,13 +1045,13 @@ end
 
 function unmute_sticker(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_sticker'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الملصقات مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الملصقات مسبقاً\n'
 else 
 redis:del(max..'mute_sticker'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الملصقات \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الملصقات \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1059,14 +1059,14 @@ end
 ---------------Mute Contact-------------------
 function mute_contact(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_contact'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* جهات الاتصال مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم فتح جهات الاتصال مسبقاً\n'
 else
 redis:set(max..'mute_contact'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل جهات الاتصال \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل جهات الاتصال \n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1074,13 +1074,13 @@ end
 
 function unmute_contact(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_contact'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* جهات الاتصال مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح جهات الاتصال مسبقاً \n'
 else 
 redis:del(max..'mute_contact'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تـم فتح جهات الاتصال \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح جهات الاتصال \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1088,14 +1088,14 @@ end
 ---------------Mute Forward-------------------
 function mute_forward(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_forward'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التوجيه مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل التوجيه مسبقاً\n'
 else
 redis:set(max..'mute_forward'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل التوجيه \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التوجيه \n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1103,13 +1103,13 @@ end
 
 function unmute_forward(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_forward'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التوجيه مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك  '..Xlll2..' \n*•* تم فتح التوجيه مسبقاً \n'
 else 
 redis:del(max..'mute_forward'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح التوجيه \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التوجيه \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1117,14 +1117,14 @@ end
 ---------------Mute Location-------------------
 function mute_location(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_location'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الموقع مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الموقع مسبقاً \n'
 else
 redis:set(max..'mute_location'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الموقع \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الموقع \n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1132,13 +1132,13 @@ end
 
 function unmute_location(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_location'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*-* الموقع مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الموقع مسبقاً \n'
 else 
 redis:del(max..'mute_location'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الموقع \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الموقع \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1146,14 +1146,14 @@ end
 ---------------Mute Document-------------------
 function mute_document(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_document'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الملفات مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الملفات مسبقاً\n'
 else
 redis:set(max..'mute_document'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الملفات\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الملفات\n*•* بواسطة : '..Xlll2..' \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1161,13 +1161,13 @@ end
 
 function unmute_document(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_document'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الملفات مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الملفات مسبقاً\n'
 else 
 redis:del(max..'mute_document'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح الملفات \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الملفات \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1175,14 +1175,14 @@ end
 ---------------Mute TgService-------------------
 function mute_tgservice(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_tgservice'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الاشعارات مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل الاشعارات مسبقاً\n'
 else
 redis:set(max..'mute_tgservice'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الاشعارات\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الاشعارات\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1190,13 +1190,13 @@ end
 
 function unmute_tgservice(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_tgservice'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الاشعارات مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الاشعارات مسبقاً \n'
 else 
 redis:del(max..'mute_tgservice'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الاشعارات \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الاشعارات\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1205,14 +1205,14 @@ end
 ---------------Mute Keyboard-------------------
 function mute_keyboard(msg) 
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'mute_keyboard'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الكيبورد مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* الكيبورد مقفل مسبقاً \n'
 else
 redis:set(max..'mute_keyboard'..msg.chat_id_,true)
-message =  '*•* من عيوني تم قفل الكيبورد\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل الكيبورد\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1220,13 +1220,13 @@ end
 
 function unmute_keyboard(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if not redis:get(max..'mute_keyboard'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* الكيبورد مفتوح من قبل \n𓄹𓄼 '
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الكيبورد مسبقاً \n'
 else 
 redis:del(max..'mute_keyboard'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح الكيبورد \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح الكيبورد\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1235,14 +1235,14 @@ end
 ---------------lock_bots_by_kick-------------------
 function lock_bots_by_kick(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_bots_by_kick'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* البوتات بالطرد مقفله من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم قفل البوتات بالطرد مسبقاً\n'
 else
 redis:set(max..'lock_bots'..msg.chat_id_,true)
 redis:set(max..'lock_bots_by_kick'..msg.chat_id_,true)
-message =  '*•* تم قفلت البوتات بالطرد (مع طرد الي ضافه) \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل البوتات بالطرد \n*•*  بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1250,13 +1250,13 @@ end
 
 function unlock_bots_by_kick(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط") end
 if not redis:get(max..'lock_bots_by_kick'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* البوتات بالطرد مفتوحه من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح البوتات بالطرد مسبقاً\n'
 else 
 redis:del(max..'lock_bots_by_kick'..msg.chat_id_)
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•*  ابشر تــم فتح البوتات بالطرد  \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح البوتات بالطرد  \n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1264,13 +1264,13 @@ end
 ---------------locks pin-------------------
 function lock_pin(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
 if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
 if redis:get(max..'lock_pin'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التثبيت مقفل من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..'\n*•* تم قفل التثبيت مسبقاً \n'
 else
 redis:set(max..'lock_pin'..msg.chat_id_,true) 
-message =  '*•* من عيوني تم قفل التثبيت\n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* تم قفل التثبيت\n*•* بواسطة : '..Xlll2..'\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
@@ -1278,13 +1278,13 @@ end
 
 function unlock_pin(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
-Qx7777 = "["..data.first_name_.."](t.me/"..data.username_..")"
-if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط  ") end
+Xlll2 = "["..data.first_name_.."](t.me/"..data.username_..")"
+if not msg.Admin then return  sendMsg(msg.chat_id_,msg.id_,"*•* هذا الامر يخص الادمنيه فقط") end
 if not redis:get(max..'lock_pin'..msg.chat_id_) then
-message =  '*•* اهلين 「 '..Qx7777..' 」\n*•* التثبيت مفتوح من قبل \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التثبيت مسبقاً \n'
 else 
 redis:del(max..'lock_pin'..msg.chat_id_)
-message =  '*•* من عيوني تم فتح التثبيت \n*•*  من قبل「 '..Qx7777..' 」 \n𓄹𓄼'
+message =  '*•* أهلا بك '..Xlll2..' \n*•* تم فتح التثبيت\n'
 end
 sendMsg(msg.chat_id_,msg.id_,message)
 end)
