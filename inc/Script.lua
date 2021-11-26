@@ -3550,6 +3550,20 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 return false 
 end
 
+if msg.text == "رياكشن" then 
+ban = math.random(55, 211); 
+local Text ='اضغطي الزر لتغيير الافتار ' 
+keyboard = {}  
+keyboard.inline_keyboard = {
+{
+{text = 'افتار اخر', callback_data="/help3@"..msg.sender_user_id_},
+},
+}
+local msg_id = msg.id_/2097152/0.5 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/gafffg/'..ban..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+return false 
+end
+
 if msg.text == "افتارات عيال" then 
 ban = math.random(2, 250); 
 local Text ='اضغط الزر لتغيير الافتار ' 
