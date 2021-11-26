@@ -15,6 +15,103 @@ sendMsg(msg.chat_id_,msg.id_,message)
 end)
 end
 
+function lock_reda(msg)
+if not msg.SudoBase then return "• هذا الامر يخص Dev فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if not redis:get(max.."lock_reda") then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد قفل ردود MR    \n• بواسطه ↤︎"..NameUser.."  " )
+else
+redis:del(max.."lock_reda")
+return sendMsg(msg.chat_id_,msg.id_,"• تم قفل ردود MR بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+
+function unlock_reda(msg)
+if not msg.SudoBase then return "• هذا الامر يخص Dev فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if redis:get(max.."lock_reda") then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد فتح ردود MR    \n• بواسطه ↤︎"..NameUser.."  " )
+else 
+redis:set(max.."lock_reda",true)
+return sendMsg(msg.chat_id_,msg.id_,"• تم فتح ردود MR بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+
+
+function lock_replayRn(msg)
+if not msg.Admin then return "• هذا الامر يخص الادمنيه فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if not redis:get(max.."lock_RandomRdod"..msg.chat_id_) then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد تعطيل الردود المتعدده    \n• بواسطه ↤︎"..NameUser.."  " )
+else
+redis:del(max.."lock_RandomRdod"..msg.chat_id_)
+return sendMsg(msg.chat_id_,msg.id_,"• تم تعطيل الردود المتعدده بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+
+function unlock_replayRn(msg)
+if not msg.Admin then return "• هذا الامر يخص الادمنيه فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if redis:get(max.."lock_RandomRdod"..msg.chat_id_) then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد تفعيل المتعدده الردود    \n• بواسطه :"..NameUser.."  " )
+else 
+redis:set(max.."lock_RandomRdod"..msg.chat_id_,true)
+return sendMsg(msg.chat_id_,msg.id_,"• تم تفعيل الردود المتعدده بنجاح   \n• بواسطه :"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+
+function lock_blo(msg)
+if not msg.SudoBase then return "• هذا الامر يخص Dev فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if not redis:get(max.."lock_blo") then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد قفل حظر العام    \n• بواسطه ↤︎"..NameUser.."  " )
+else
+redis:del(max.."lock_blo")
+return sendMsg(msg.chat_id_,msg.id_,"• تم قفل حظر العام بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+function unlock_blo(msg)
+if not msg.SudoBase then return "• هذا الامر يخص Dev فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if redis:get(max.."lock_blo") then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد فتح حظر العام    \n• بواسطه ↤︎"..NameUser.."  " )
+else 
+redis:set(max.."lock_blo",true)
+return sendMsg(msg.chat_id_,msg.id_,"• تم فتح حظر العام بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
+
+function lock_has(msg)
+if not msg.SudoBase then return "• هذا الامر يخص Dev فقط  " end
+GetUserID(msg.sender_user_id_,function(arg,data)
+msg = arg.msg 
+local NameUser   = Hyper_Link_Name(data)
+if not redis:get(max.."lock_has") then
+return sendMsg(msg.chat_id_,msg.id_,"• تم بالتأكيد قفل الاحصائيات    \n• بواسطه ↤︎"..NameUser.."  " )
+else
+redis:del(max.."lock_has")
+return sendMsg(msg.chat_id_,msg.id_,"• تم قفل الاحصائيات بنجاح   \n• بواسطه ↤︎"..NameUser.."  " )
+end
+end,{msg=msg})
+end
  
 function lock_waring(msg)
 GetUserID(msg.sender_user_id_,function (arg,data)
