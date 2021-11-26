@@ -573,7 +573,7 @@ if DataText and DataText:match('(.*)/help3') then
 local Teext =[[ 
 اضغظ الزر لتغير الرياكشن 
 ]] 
-ban = math.random(55, 216);  
+ban = math.random(2, 211);  
 keyboard = {}  
 keyboard.inline_keyboard = { 
 { 

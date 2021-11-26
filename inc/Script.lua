@@ -3551,7 +3551,7 @@ return false
 end
 
 if msg.text == "رياكشن" then 
-ban = math.random(55, 216); 
+ban = math.random(2, 211); 
 local Text =' اضغط الزر لتغيير الرياكشن' 
 keyboard = {}  
 keyboard.inline_keyboard = {
