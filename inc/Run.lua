@@ -554,6 +554,20 @@ delete_msg(Chat_Id2, {[0] = MsgId2})
 https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. Chat_Id2 .. '&photo=https://t.me/avta1/'..ban..'&caption=' .. URL.escape(Teext).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 
+if DataText and DataText:match('(.*)/help3') then
+local Teext =[[
+اضغظ الزر لتغير الرياكشن
+]]
+ban = math.random(55, 211); 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = 'رياكشن اخر', callback_data=data.sender_user_id_.."/help1"},
+},
+}
+delete_msg(Chat_Id2, {[0] = MsgId2})  
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. Chat_Id2 .. '&photo=https://t.me/gafffg/'..ban..'&caption=' .. URL.escape(Teext).."&reply_to_message_id=0&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
 
 if DataText and DataText:match('(.*)/help2') then
 local Teext =[[
