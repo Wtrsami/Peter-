@@ -562,7 +562,7 @@ ban = math.random(55, 211);
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = 'رياكشن اخر', callback_data=data.sender_user_id_.."/help1"},
+{text = 'رياكشن اخر', callback_data=data.sender_user_id_.."/help3"},
 },
 }
 delete_msg(Chat_Id2, {[0] = MsgId2})  
