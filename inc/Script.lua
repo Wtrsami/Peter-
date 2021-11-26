@@ -3551,12 +3551,12 @@ return false
 end
 
 if msg.text == "رياكشن" then 
-ban = math.random(55, 211); 
-local Text ='اضغطي الزر لتغيير الافتار ' 
+ban = math.random(55, 216); 
+local Text =' اضغط الزر لتغيير الرياكشن' 
 keyboard = {}  
 keyboard.inline_keyboard = {
 {
-{text = 'افتار اخر', callback_data="/help3@"..msg.sender_user_id_},
+{text = 'رياكشن اخر', callback_data="/help3@"..msg.sender_user_id_},
 },
 }
 local msg_id = msg.id_/2097152/0.5 
