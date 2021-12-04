@@ -2170,7 +2170,7 @@ if MsgText[1] == "سورس" or MsgText[1]=="السورس" then
 Text = redis:get(max..":TEXT_SUDOD") or '• لا يوجد كليشه للسورس\n• يمكنك اضافه كليشه من خلال الامر\n       " `ضع كليشه السورس` " \n'
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '• sᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .',url="t.me/VV6YV"}},
+{{text = 'تبي بوت زي كذا حياك . .',url="t.me/YY6VY"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
