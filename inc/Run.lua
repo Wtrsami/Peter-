@@ -1072,9 +1072,42 @@ end
 	input_inFo(msg)  
 	end,nil)
 	elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
-UpdateSource() dofile("./inc/Run.lua")
-tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
-end
+	print(" ||  ------------------------[ Loading For loding list Chat ]--------------------- ||")
+	local groups = redis:smembers(max..'group:ids')
+	local GroupsIsFound = 0
+	for i = 1, #groups do 
+	GroupTitle(groups[i],function(arg,data)
+	if data.code_ and data.code_ == 400 then
+	rem_data_group(groups[i])
+	print(" Del Group From list ")
+	else
+	if data.type_ and data.type_.channel_ 
+	and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
+	StatusLeft(groups[i],our_id)
+	rem_data_group(groups[i])
+	print(" Del Group From list ")
+	end
+	print(" Name Group : "..data.title_)
+	GroupsIsFound = GroupsIsFound + 1
+	end
+	print(GroupsIsFound..' : '..#groups..' : '..i)
+	if #groups == i then
+	
+	local pv = redis:smembers(max..'users')
+	local NumPvDel = 0
+	for i = 1, #pv do
+	GroupTitle(pv[i],function(arg,data)
+	NumPvDel = NumPvDel + 1
+	print("Geting Ok : "..NumPvDel)
+	end)
+	end
+	
+	end
+	end)
+	end
+	
 
-
+	end
+	
+	
 end
