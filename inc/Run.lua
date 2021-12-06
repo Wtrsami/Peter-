@@ -540,7 +540,7 @@ keyboard.inline_keyboard = {
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
-
+}
 if DataText and DataText:match('(.*)/help1') then
 local Teext =[[
 اضغطي الزر لتغيير الافتار
@@ -843,8 +843,7 @@ keyboard.inline_keyboard = {
 {{text="م3",callback_data="/m3:"..user_id},
 {{text="م4",callback_data="/m4:"..user_id},
 {text="الاغاني",callback_data="/music:"..user_id}}, 
-{{text="رجوع",callback_data="/help:"..user_id}}, 
-}  
+{{text="رجوع",callback_data="/help:"..user_id}},  
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if DataText and DataText:match("^/music:(.*)$") then  
