@@ -527,16 +527,15 @@ local Text = [[‏‌‌‏‌‌‌‌‏ ‏‌‌‏‌‌‌‌‏ • ‌�
 • م2 - اوامر الاشراف 
 • م3 - اوامر التفعيل والتعطيل
 • م4 - اوامر الخدمة 
-• م5 - اوامر المطور
 ـــــــــــــــــــــــــــــــــــــــــــــــ
 
 [sᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
-{{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id},
-{text="م5",callback_data="/m5:"..user_id}},
-{{text="اوامر التحميل",callback_data="/music:"..user_id}},
+{{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},{{text="م5",callback_data="/m5:"..user_id}},
+{{text="اوامر التحميل",callback_data="/music:"..user_id}},
+} 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 
@@ -642,9 +641,7 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م2",callback_data="/m2:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},
-{{text="م5",callback_data="/m5:"..user_id},
-{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="م5",callback_data="/m5:"..user_id}},{{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -697,9 +694,7 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},
-{{text="م5",callback_data="/m5:"..user_id},
-{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="م5",callback_data="/m5:"..user_id}},{{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -743,9 +738,7 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},
-{{text="م5",callback_data="/m5:"..user_id},
-{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="م5",callback_data="/m5:"..user_id}},{{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -781,69 +774,26 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
-{{text="م3",callback_data="/m3:"..user_id},
-{{text="م5",callback_data="/m5:"..user_id},
-{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="م5",callback_data="/m5:"..user_id}},{{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+endif DataText and DataText:match("^/m5:(.*)$") then  
+local user_id = DataText:match("^/m5:(.*)$")
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذراً هذا الامر ليس لك .")..'&show_alert=true')
+return false
 end
-if DataText and DataText:match("^/m5:(.*)$") then   
-local user_id = DataText:match("^/m5:(.*)$") 
-if tonumber(data.sender_user_id_) ~= tonumber(user_id) then 
-https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذراً هذا الامر ليس لك .")..'&show_alert=true') 
-return false 
-end 
-local Text = [[ 
-• اوامر المطور 🎖
- 
-• اضف رد عام - حذف رد عام   
-• اضف رد متعدد عام 
-• مسح رد متعدد عام 
-• الردود المتعدده العامه 
-• مسح الردود المتعدده العامه 
-• تعطيل الردود المتعدده 
-• نسخه احتياطيه للمجموعات 
-• رفع نسخه الاحتياطيه 
-• الاشتراك الاجباري 
-• تفعيل الاشتراك الاجباري 
-• تعطيل الاشتراك الاجباري 
-• تغيير الاشتراك الاجباري 
-• الاشتراك الاجباري 
-• فتح ردود MR
-• فتح حظر العام
-• فتح الاحصائيات
-• قفل ردود MR
-• قفل حظر العام
-• قفل الاحصائيات 
-• اذاعه عام بالتوجيه   
-• اذاعه خاص 
-• اذاعه عام  
-• اذاعه  
-• قائمة العام 
-• قائمة MR 
-• قائمة M
-   • ضع كليشه المطور
-• ضع كليشه السورس  
-• شرط التفعيل 
-• قائمة المجموعات 
-• المجموعات 
-• المشتركين 
-• تحديث السورس 
-• تنظيف المجموعات 
-• تنظيف المشتركين 
-• ضع اسم البوت 
-• ضع صوره الترحيب
-
-[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]] 
-keyboard = {}  
-keyboard.inline_keyboard = { 
-{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}}, 
-{{text="م3",callback_data="/m3:"..user_id},
-{{text="م4",callback_data="/m4:"..user_id},
-{text="الاغاني",callback_data="/music:"..user_id}}, 
-{{text="رجوع",callback_data="/help:"..user_id}},  
-return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+local Text = [[
+اوامر م5 تكتبها هنا
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},{text="م5",callback_data="/m5:"..user_id}},{{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if DataText and DataText:match("^/music:(.*)$") then  
 local user_id = DataText:match("^/music:(.*)$")
@@ -866,8 +816,8 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
 {{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},
-{{text="م5",callback_data="/m5:"..user_id},
-{{text="رجوع",callback_data="/help:"..user_id}}, 
+{{text="رجوع",callback_data="/help:"..user_id}},
+} 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 	elseif data.ID == "UpdateNewMessage" then
