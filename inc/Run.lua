@@ -527,6 +527,7 @@ local Text = [[‏‌‌‏‌‌‌‌‏ ‏‌‌‏‌‌‌‌‏ • ‌�
 • م2 - اوامر الاشراف 
 • م3 - اوامر التفعيل والتعطيل
 • م4 - اوامر الخدمة 
+• م5 - اوامر المطور
 ـــــــــــــــــــــــــــــــــــــــــــــــ
 
 [sᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ](https://t.me/VV6YV) ]]
@@ -534,6 +535,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
 {{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},
+{text="م5",callback_data="/m5:"..user_id}},
 {{text="اوامر التحميل",callback_data="/music:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -641,7 +643,9 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م2",callback_data="/m2:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},
+{{text="م5",callback_data="/m5:"..user_id},
+{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -694,7 +698,9 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م3",callback_data="/m3:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},
+{{text="م5",callback_data="/m5:"..user_id},
+{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -738,7 +744,9 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
-{{text="م4",callback_data="/m4:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م4",callback_data="/m4:"..user_id},
+{{text="م5",callback_data="/m5:"..user_id},
+{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -774,10 +782,70 @@ local Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
-{{text="م3",callback_data="/m3:"..user_id},{text="الاغاني",callback_data="/music:"..user_id}},
+{{text="م3",callback_data="/m3:"..user_id},
+{{text="م5",callback_data="/m5:"..user_id},
+{text="الاغاني",callback_data="/music:"..user_id}},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+if DataText and DataText:match("^/m5:(.*)$") then   
+local user_id = DataText:match("^/m5:(.*)$") 
+if tonumber(data.sender_user_id_) ~= tonumber(user_id) then 
+https.request("https://api.telegram.org/bot"..Token..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("- عذراً هذا الامر ليس لك .")..'&show_alert=true') 
+return false 
+end 
+local Text = [[ 
+• اوامر المطور 🎖
+ 
+• اضف رد عام - حذف رد عام   
+• اضف رد متعدد عام 
+• مسح رد متعدد عام 
+• الردود المتعدده العامه 
+• مسح الردود المتعدده العامه 
+• تعطيل الردود المتعدده 
+• نسخه احتياطيه للمجموعات 
+• رفع نسخه الاحتياطيه 
+• الاشتراك الاجباري 
+• تفعيل الاشتراك الاجباري 
+• تعطيل الاشتراك الاجباري 
+• تغيير الاشتراك الاجباري 
+• الاشتراك الاجباري 
+• فتح ردود MR
+• فتح حظر العام
+• فتح الاحصائيات
+• قفل ردود MR
+• قفل حظر العام
+• قفل الاحصائيات 
+• اذاعه عام بالتوجيه   
+• اذاعه خاص 
+• اذاعه عام  
+• اذاعه  
+• قائمة العام 
+• قائمة MR 
+• قائمة M
+   • ضع كليشه المطور
+• ضع كليشه السورس  
+• شرط التفعيل 
+• قائمة المجموعات 
+• المجموعات 
+• المشتركين 
+• تحديث السورس 
+• تنظيف المجموعات 
+• تنظيف المشتركين 
+• ضع اسم البوت 
+• ضع صوره الترحيب
+
+[• ѕᴏᴜʀᴄᴇ ᴘᴇᴛᴇʀ .](https://t.me/VV6YV) ]] 
+keyboard = {}  
+keyboard.inline_keyboard = { 
+{{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}}, 
+{{text="م3",callback_data="/m3:"..user_id},
+{{text="م4",callback_data="/m4:"..user_id},
+{text="الاغاني",callback_data="/music:"..user_id}}, 
+{{text="رجوع",callback_data="/help:"..user_id}}, 
+}  
+return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if DataText and DataText:match("^/music:(.*)$") then  
 local user_id = DataText:match("^/music:(.*)$")
@@ -800,6 +868,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 {{text="م1",callback_data="/m1:"..user_id},{text="م2",callback_data="/m2:"..user_id}},
 {{text="م3",callback_data="/m3:"..user_id},{text="م4",callback_data="/m4:"..user_id}},
+{{text="م5",callback_data="/m5:"..user_id},
 {{text="رجوع",callback_data="/help:"..user_id}},
 } 
 return https.request("https://api.telegram.org/bot"..Token..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -1072,42 +1141,9 @@ end
 	input_inFo(msg)  
 	end,nil)
 	elseif data.ID == "UpdateOption" and data.value_.value_ == "Ready" then
-	print(" ||  ------------------------[ Loading For loding list Chat ]--------------------- ||")
-	local groups = redis:smembers(max..'group:ids')
-	local GroupsIsFound = 0
-	for i = 1, #groups do 
-	GroupTitle(groups[i],function(arg,data)
-	if data.code_ and data.code_ == 400 then
-	rem_data_group(groups[i])
-	print(" Del Group From list ")
-	else
-	if data.type_ and data.type_.channel_ 
-	and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
-	StatusLeft(groups[i],our_id)
-	rem_data_group(groups[i])
-	print(" Del Group From list ")
-	end
-	print(" Name Group : "..data.title_)
-	GroupsIsFound = GroupsIsFound + 1
-	end
-	print(GroupsIsFound..' : '..#groups..' : '..i)
-	if #groups == i then
-	
-	local pv = redis:smembers(max..'users')
-	local NumPvDel = 0
-	for i = 1, #pv do
-	GroupTitle(pv[i],function(arg,data)
-	NumPvDel = NumPvDel + 1
-	print("Geting Ok : "..NumPvDel)
-	end)
-	end
-	
-	end
-	end)
-	end
-	
+UpdateSource() dofile("./inc/Run.lua")
+tdcli_function({ID='GetChat',chat_id_ = SUDO_ID},function(arg,data)end,nil)
+end
 
-	end
-	
-	
+
 end
